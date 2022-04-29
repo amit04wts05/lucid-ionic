@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import {CategoryResponse} from "../interface/category";
-import { ProductResponse } from "../interface/product";
+import {CategoryResponse} from "../model/category";
+import { ProductResponse } from "../model/product";
 
 @Injectable()
 export class ApiService{
@@ -14,6 +14,6 @@ export class ApiService{
    return  this.http.get<CategoryResponse>(environment.url+this.resources.category);
   }
   getProduct(id:any){
-    return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{id:id}});
+    return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{id:''}});
    }
 }

@@ -57,7 +57,7 @@ export interface   SizeMeasures {
   "width": number
 }
 export interface Image{
-
+  
     "_id": string,
     "productId": string,
     "image": string,
