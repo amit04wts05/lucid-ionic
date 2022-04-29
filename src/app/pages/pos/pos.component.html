@@ -2,7 +2,7 @@
 <ion-content>
     <div class="site-wrapper d-lg-flex justify-content-md-between">
         <div class="left-section">
-            <ul class="category-tabs d-md-flex justify-content-between">
+            <ul class="category-tabs d-md-flex justify-content-between" *ngIf="categoryData">
                 <li [class.active]="'' == selectedCategory" (click)="loadProduct('')" rel="tab1">
                     <svg class="icon">
                         <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
@@ -43,7 +43,7 @@
                     </ul>
 
                     <div id="tab-1" class="store-content current">
-                        <div class="store-products d-md-flex flex-wrap">
+                        <div class="store-products d-md-flex flex-wrap" *ngIf="productData">
                             <div class="product-box" *ngFor="let product of productData.data">
                                 <a href="javascript:void(0)" (click)="addBookmark(product._id )" class="product-ribbon"
                                 [class.active]="product?.isBookmarked">

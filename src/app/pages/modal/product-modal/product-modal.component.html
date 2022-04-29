@@ -7,26 +7,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  {{data.image}}
+
+
   <div class="product-slider">
-    <div class="slider-for">
-        <div class="large-image" *ngFor="let img of data.images">
-            <img [src]="img.image" alt=""/>
-        </div>
-        
-    </div>
+
+    <ion-slides   #sliderIndex  pager="true" >
+      <ion-slide  *ngFor="let img of data.images">
+        <img [src]="img.image" alt=""/>
+      </ion-slide>
+    </ion-slides>
+
     <div class="slider-nav">
-        <div class="thumb-image" *ngFor="let timg of data.images">
-            <img [src]="timg.image" alt=""/>
+        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="selectedImage(i)">
+            <img class="img-size" [src]="timg.images" alt=""/>
         </div>
-       
+
     </div>
 </div>
 <div class="product-detail">
   <h4 *ngIf="data.variants.length>0">Choose size</h4>
   <ul class="custom-radio-button d-md-flex flex-wrap">
       <li *ngFor="let variant of data.variants">
-        <div class="form-group">
+        <div class="form-group" (click)="size = variant">
             <input type="radio" id="{{variant.size}}" name="size" checked/>
             <label for="{{variant.size}}">{{variant.size}}</label>
           </div>
@@ -34,9 +36,9 @@
   </ul>
   <h4>Choose quantity</h4>
   <div class="quantity-wrapper">
-    <button class="decrement"><i class="fa fa-chevron-left"></i></button>
-    <input class="counter" type='text'>
-    <button class="increment"><i class="fa fa-chevron-right"></i></button>
+    <button class="decrement" (click)="qtyDecriment()"><i class="fa fa-chevron-left"></i></button>
+    <input class="counter" type='text' [(ngModel)]="qty">
+    <button class="increment" (click)="qtyIncrease()"><i class="fa fa-chevron-right"></i></button>
   </div>
   <div class="product-info">
     <div class="quantity-available">Quantity available in stock: <span>430</span></div>
