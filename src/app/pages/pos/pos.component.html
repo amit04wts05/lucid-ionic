@@ -3,28 +3,19 @@
   <div class="site-wrapper d-lg-flex justify-content-md-between">
       <div class="left-section">
           <ul class="category-tabs d-md-flex justify-content-between">
-              <li class="active" rel="tab1">
+              <li [class.active]="'' == selectedCategory" (click)="loadProduct('')" rel="tab1">
                    <svg class="icon">
                       <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
                     </svg>
                    All</li>
-              <li rel="tab2">
+              <li [class.active]="data._id == selectedCategory" (click)="loadProduct(data._id )" rel="tab2" *ngFor="let data of categoryData.data  ">
                   <svg class="icon">
                       <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel"></use>
                   </svg>
-                   Apparel</li>
-              <li rel="tab3">
-                  <svg class="icon">
-                      <use xlink:href="./assets/images/svg-sprite.svg#icon-cap"></use>
-                  </svg>
-                   Headwear</li>
-              <li rel="tab4">
-                  <svg class="icon">
-                      <use xlink:href="./assets/images/svg-sprite.svg#icon-bottle"></use>
-                  </svg>
-                       Merchandise</li>
+                   {{data.name}}</li>
+
             </ul>
-  
+
             <div class="tab_container">
               <h3 class="d_active tab_drawer_heading" rel="tab1">
                 <svg class="icon">
@@ -37,7 +28,7 @@
                       <li class="tab-link" data-tab="tab-3">New Launch</li>
                       <li class="tab-link" data-tab="tab-4">Bookmarks</li>
                   </ul>
-  
+
                   <div id="tab-1" class="store-content current">
                       <div class="store-products d-md-flex flex-wrap">
                           <div class="product-box">
@@ -407,7 +398,7 @@
                       <li class="tab-link" data-tab="tab-7">New Launch</li>
                       <li class="tab-link" data-tab="tab-8">Bookmarks</li>
                   </ul>
-  
+
                   <div id="tab-5" class="store-content current">
                       <div class="store-products d-md-flex flex-wrap">
                           <div class="product-box">
@@ -751,6 +742,5 @@
                </div>
       </div>
   </div>
-  
+
   </ion-content>
-  
