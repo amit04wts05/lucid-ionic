@@ -14,6 +14,6 @@ export class ApiService{
    return  this.http.get<CategoryResponse>(environment.url+this.resources.category);
   }
   getProduct(id:any){
-    return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{id:''}});
+    return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{id:id}});
    }
 }

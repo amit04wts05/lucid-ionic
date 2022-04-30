@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'category-tile',
@@ -7,10 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CategoryTileComponent implements OnInit {
 
-  @Input() category:any; 
+  @Input() categoryData:any; 
+  @Output() loadProductEvent=new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  loadProduct(event){
+    this.loadProductEvent.emit(event);
+  }
+
 
 }

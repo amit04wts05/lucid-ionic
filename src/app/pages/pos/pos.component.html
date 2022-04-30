@@ -2,22 +2,7 @@
 <ion-content>
     <div class="site-wrapper d-lg-flex justify-content-md-between">
         <div class="left-section">
-            <ul class="category-tabs d-md-flex justify-content-between" *ngIf="categoryData">
-                <li [class.active]="'' == selectedCategory" (click)="loadProduct('')" rel="tab1">
-                    <svg class="icon">
-                        <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
-                    </svg>
-                    All
-                </li>
-                <li [class.active]="data._id == selectedCategory" (click)="loadProduct(data?._id )" rel="tab2"
-                    *ngFor="let data of categoryData?.data">
-                    <svg class="icon">
-                        <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel"></use>
-                    </svg>
-                    {{data.name}}
-                </li>
-
-            </ul>
+           <category-tile [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
             <div *ngIf="loading">
                 <div class="ion-padding custom-skeleton">
                   <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
@@ -42,33 +27,7 @@
                         <li class="tab-link" data-tab="tab-4">Bookmarks</li>
                     </ul>
 
-                    <div id="tab-1" class="store-content current">
-                        <div class="store-products d-md-flex flex-wrap" *ngIf="productData">
-                            <div class="product-box" *ngFor="let product of productData.data">
-                                <a href="javascript:void(0)" (click)="addBookmark(product._id )" class="product-ribbon"
-                                [class.active]="product?.isBookmarked">
-                                    <svg class="icon">
-                                        <use xlink:href="./assets/images/svg-sprite.svg#icon-ribbon"></use>
-                                    </svg>
-                                    <svg class="icon">
-                                        <use xlink:href="./assets/images/svg-sprite.svg#icon-ribbon-filled"></use>
-                                    </svg>
-                                </a>
-                                <a href="javascript:void(0)" (click)="productDetail(product)" class="block-link"></a>
-                                <div class="image-container">
-                                    <img [src]="product?.images[0]['image']" alt="" />
-                                </div>
-                                <div class="content">
-                                    <h4>{{product.name}}k</h4>
-                                    <div class="product-health bad">4 ITEMS RUNNING LOW</div>
-                                    <div class="price d-flex justify-content-between align-items-center">
-                                        <h2>{{product?.priceBook?.symbol}}{{product.basePrice}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                   <product-tile [productData]="productData" (productPage)="productDetail($event)"></product-tile>
                 </div>
             </div>
             <!-- .tab_container -->

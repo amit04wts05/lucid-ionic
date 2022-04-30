@@ -6,15 +6,15 @@ import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 })
 export class ProductTileComponent implements OnInit {
 
-  @Input() product:any; 
+  @Input() productData:any; 
   @Output() productPage:EventEmitter<string>= new EventEmitter();  
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  goToProductDetailPage(){
-  this.productPage.emit();
+  productDetail(event){
+  this.productPage.emit(event);
   }
 
 }

@@ -1,8 +1,16 @@
+<ul class="category-tabs d-md-flex justify-content-between" *ngIf="categoryData">
+  <li [class.active]="'' == selectedCategory" (click)="loadProduct('')" rel="tab1">
+      <svg class="icon">
+          <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
+      </svg>
+      All
+  </li>
+  <li [class.active]="data._id == selectedCategory" (click)="loadProduct(data?._id )" rel="tab2"
+      *ngFor="let data of categoryData?.data">
+      <svg class="icon">
+          <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel"></use>
+      </svg>
+      {{data.name}}
+  </li>
 
-
-          <h4>{{category.name}}</h4>
-          <h3>{{category.description}}</h3>
-          <a href="javascript:void(0)" class="c-btn btn-border btn-xsm">Discover More</a>
-          <div class="image-container">
-            <img src="{{category.image}}" alt="Apparel">
-        
+</ul>

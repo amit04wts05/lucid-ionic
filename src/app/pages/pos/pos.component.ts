@@ -24,14 +24,15 @@ export class PosComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private http: ApiService,public modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.catResponse = this?.http?.getCategory()?.subscribe((data) => {
-      this.categoryData = data;
+    this.catResponse = this.http.getCategory().subscribe((data) => {
       this.loading=false;
-    });
+      this.categoryData = data; 
+    },
+   );
 
     this.getProduct();
   }
-  loadProduct(id: any) {
+  loadProduct(id?: any) {
     this.selectedCategory = id;
     this.getProduct();
   }
