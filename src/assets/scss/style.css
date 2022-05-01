@@ -2318,7 +2318,7 @@ ul.category-tabs li.active svg, ul.category-tabs li.active path {
 }
 
 .site-wrapper .left-section .store-content.current {
-  display: inherit;
+  display: block;
 }
 
 .site-wrapper .left-section .product-box {
@@ -2376,6 +2376,7 @@ ul.category-tabs li.active svg, ul.category-tabs li.active path {
 
 .site-wrapper .left-section .product-box .image-container {
   margin-bottom: 5px;
+  height: 120px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2386,7 +2387,9 @@ ul.category-tabs li.active svg, ul.category-tabs li.active path {
       -ms-flex-pack: center;
           justify-content: center;
 }
-
+.site-wrapper .left-section .product-box .image-container img{
+  max-height: 100%;
+}
 .site-wrapper .left-section .product-box .content h4 {
   font-size: 0.875rem;
   font-weight: 500;

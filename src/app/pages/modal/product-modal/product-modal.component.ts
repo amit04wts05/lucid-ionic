@@ -21,11 +21,11 @@ size:any ;
     }
 qtyIncrease(){
 
-  this.qty+=this.qty;
+  this.qty=this.qty+1;
 }
 qtyDecriment(){
   if(this.qty>0){
-    this.qty-=this.qty;
+    this.qty=this.qty-1;
   }
 
 }

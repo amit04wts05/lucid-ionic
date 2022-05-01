@@ -67,6 +67,11 @@ export class PosComponent implements OnInit, OnDestroy {
 
     return await modal.present();
   }
+  closeModal(){
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
 
   ngOnDestroy(): void {
     this.catResponse.unsubscribe();
