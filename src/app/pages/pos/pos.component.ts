@@ -7,6 +7,7 @@ import { CategoryResponse } from 'src/app/model/category';
 import { ProductResponse } from 'src/app/model/product';
 import { ApiService } from 'src/app/services/apiServices';
 import { ProductModalComponent } from '../modal/product-modal/product-modal.component';
+import { LoaderService } from './../../services/loader-service';
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
@@ -21,18 +22,21 @@ export class PosComponent implements OnInit, OnDestroy {
   selectbookmark: any = '';
   loading:boolean=true;
   dataReturned: any;
-  constructor(private router: Router, private http: ApiService,public modalController: ModalController) {}
+  constructor(private router: Router, private http: ApiService,public modalController: ModalController,
+    private loader:LoaderService) {}
 
   ngOnInit(): void {
+    this.loader.startLoading();
     this.catResponse = this.http.getCategory().subscribe((data) => {
-      this.loading=false;
       this.categoryData = data; 
+      this.getProduct();
     },
    );
-
-    this.getProduct();
   }
+
+
   loadProduct(id?: any) {
+    this.loader.startLoading();
     this.selectedCategory = id;
     this.getProduct();
   }
@@ -47,6 +51,7 @@ export class PosComponent implements OnInit, OnDestroy {
       ?.getProduct(this.selectedCategory)
       ?.subscribe((data) => {
         this.productData = data;
+        this.loader.stopLoading();
       });
   }
   async productDetail(productDetail:any) {
