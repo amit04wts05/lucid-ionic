@@ -7,9 +7,10 @@ import { IonSlides, ModalController, NavParams } from '@ionic/angular';
   styleUrls: ['./product-modal.component.scss'],
 })
 export class ProductModalComponent implements OnInit {
+  @ViewChild('sliderIndex',{read:false,static:false}) viewer: ElementRef;
   qty: any = 1;
   size: any;
-  @ViewChild('sliderIndex',  {static: false}) viewer: IonSlides;
+
   slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -27,9 +28,12 @@ export class ProductModalComponent implements OnInit {
     private modalController: ModalController,
     private navParams: NavParams
   ) {}
-
+  toChange(i){
+    console.log(this.viewer);
+this.viewer.nativeElement?.slideTo(i, 500);
+  }
   async closeModal() {
-    const onClosedData: string = 'Wrapped Up!';
+    const onClosedData = 'Wrapped Up!';
     await this.modalController.dismiss(onClosedData);
   }
   qtyIncrease() {
