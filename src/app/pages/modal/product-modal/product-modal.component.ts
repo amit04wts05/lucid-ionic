@@ -7,7 +7,7 @@ import { IonSlides, ModalController, NavParams } from '@ionic/angular';
   styleUrls: ['./product-modal.component.scss'],
 })
 export class ProductModalComponent implements OnInit {
-  @ViewChild('sliderIndex',{read:false,static:false}) viewer: ElementRef;
+  @ViewChild('sliderIndex', { read: false, static: false }) viewer: ElementRef;
   qty: any = 1;
   size: any;
 
@@ -16,21 +16,19 @@ export class ProductModalComponent implements OnInit {
     speed: 400,
     loop: true,
     autoplay: {
-          delay: 2000
+      delay: 2000,
     },
-    pagination : {
+    pagination: {
       el: '.swiper-pagination',
       clickable: true,
-    }
-
-  }
+    },
+  };
   constructor(
     private modalController: ModalController,
     private navParams: NavParams
   ) {}
-  toChange(i){
-    console.log(this.viewer);
-this.viewer.nativeElement?.slideTo(i, 500);
+  toChange(i) {
+    this.viewer.nativeElement?.slideTo(i + 1, 500);
   }
   async closeModal() {
     const onClosedData = 'Wrapped Up!';
@@ -45,15 +43,15 @@ this.viewer.nativeElement?.slideTo(i, 500);
     }
   }
   onSlideMoved(event) {
-   // this.slides.slideTo(i);
-   event.target.isEnd().then(isEnd => {
-    console.log('End of slide', isEnd);
-  });
+    // this.slides.slideTo(i);
+    event.target.isEnd().then((isEnd) => {
+      console.log('End of slide', isEnd);
+    });
 
-  event.target.isBeginning().then((istrue) => {
-    console.log('End of slide', istrue);
-  });
-}
-    // this.cd.detectChanges();
+    event.target.isBeginning().then((istrue) => {
+      console.log('End of slide', istrue);
+    });
+  }
+  // this.cd.detectChanges();
   ngOnInit() {}
 }

@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
   styleUrls: ['./category-tile.component.scss']
 })
 export class CategoryTileComponent implements OnInit {
-
+  @Input() selectedCategory:any;
   @Input() categoryData:any; 
   @Output() loadProductEvent=new EventEmitter();
   constructor() { }

@@ -1,5 +1,5 @@
 <ul class="category-tabs d-md-flex justify-content-between" *ngIf="categoryData">
-  <li [class.active]="'' == selectedCategory" (click)="loadProduct('')" rel="tab1">
+  <li [class.active]="'all' == selectedCategory" (click)="loadProduct('')" rel="tab1">
       <svg class="icon">
           <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
       </svg>

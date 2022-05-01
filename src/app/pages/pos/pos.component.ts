@@ -17,7 +17,7 @@ export class PosComponent implements OnInit, OnDestroy {
   categoryData: CategoryResponse;
   productResponse: Subscription;
   productData: ProductResponse;
-  selectedCategory: any = '';
+  selectedCategory: any = 'all';
   selectbookmark: any = '';
   loading:boolean=true;
   dataReturned: any;

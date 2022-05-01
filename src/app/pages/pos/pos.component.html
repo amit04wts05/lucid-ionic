@@ -2,7 +2,7 @@
 <ion-content>
     <div class="site-wrapper d-lg-flex justify-content-md-between">
         <div class="left-section">
-           <category-tile [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
+           <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
             <div *ngIf="loading">
                 <div class="ion-padding custom-skeleton">
                   <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
