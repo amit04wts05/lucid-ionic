@@ -8,15 +8,15 @@
 
 
   <div class="product-slider">
-
-    <ion-slides   #sliderIndex  pager="true" >
+    <ion-slides #sliderIndex pager="true" [options]="slideOpts">
+    <!--<ion-slides   #sliderIndex  pager="true" >-->
       <ion-slide  *ngFor="let img of data.images">
         <img [src]="img.image" alt=""/>
       </ion-slide>
     </ion-slides>
 
     <div class="slider-nav">
-        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="selectedImage(i)">
+        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (ionSlideDidChange)="onSlideMoved($event)">
             <img class="img-size" [src]="timg.image" alt=""/>
         </div>
 
