@@ -1,6 +1,6 @@
 
 <ion-content>
-    <div class="site-wrapper d-lg-flex justify-content-md-between">
+    <div class="site-wrapper d-lg-flex flex-md-wrap justify-content-md-between">
         <div class="left-section">
          <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
           
@@ -13,10 +13,10 @@
                 </h3>
                 <div id="tab1" class="tab_content">
                     <ul class="store-tabs d-flex justify-content-center">
-                        <li class="tab-link current" data-tab="tab-1" (click)="getProductList('bestSellers')">Popular</li>
-                        <li class="tab-link" data-tab="tab-2" (click)="getProductList('recentlySold')">Recently sold</li>
-                        <li class="tab-link" data-tab="tab-3" (click)="getProductList('newLaunched')">New Launch</li>
-                        <li class="tab-link" data-tab="tab-4" (click)="getProductList()">Bookmarks</li>
+                        <li class="tab-link" [class.current]="type=='bestSellers'" data-tab="tab-1" (click)="getProductList('bestSellers')">Popular</li>
+                        <li class="tab-link" data-tab="tab-2" [class.current]="type=='recentlySold'" (click)="getProductList('recentlySold')">Recently sold</li>
+                        <li class="tab-link" data-tab="tab-3" [class.current]="type=='newLaunched'" (click)="getProductList('newLaunched')">New Launch</li>
+                        <li class="tab-link" data-tab="tab-4" [class.current]="type==''" (click)="getProductList()">Bookmarks</li>
                     </ul>
 
                    <product-tile [productData]="productData" (productPage)="productDetail($event)"></product-tile>

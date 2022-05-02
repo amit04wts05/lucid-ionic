@@ -184,6 +184,7 @@
     }
 }
 /* Right Section */
-.site-wrapper .right-section{
-    flex-shrink: inherit;
+
+.header-md::after{
+    display: none !important;
 }

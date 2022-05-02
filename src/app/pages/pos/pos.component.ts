@@ -22,11 +22,13 @@ export class PosComponent implements OnInit, OnDestroy {
   selectbookmark: any = '';
   loading:boolean=true;
   dataReturned: any;
+  type='bestSellers';
+
   constructor(private router: Router, private http: ApiService,public modalController: ModalController,
     private loader:LoaderService) {}
 
   ngOnInit(): void {
-    this.loader.startLoading();
+   // this.loader.startLoading();
     this.catResponse = this.http.getCategory().subscribe((data) => {
       this.categoryData = data; 
       this.getProduct();
@@ -36,7 +38,7 @@ export class PosComponent implements OnInit, OnDestroy {
 
 
   loadProduct(id?: any) {
-    this.loader.startLoading();
+  //  this.loader.startLoading();
     this.selectedCategory = id;
     this.getProduct();
   }
@@ -51,7 +53,7 @@ export class PosComponent implements OnInit, OnDestroy {
       ?.getProduct(this.selectedCategory)
       ?.subscribe((data) => {
         this.productData = data;
-        this.loader.stopLoading();
+       // this.loader.stopLoading();
       });
   }
   async productDetail(productDetail:any) {
@@ -78,6 +80,7 @@ export class PosComponent implements OnInit, OnDestroy {
     });
   }
   getProductList(type:any){
+    this.type=type;
     this.productResponse = this.http
     ?.getProduct(this.selectedCategory,type)
     ?.subscribe((data) => {
