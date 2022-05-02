@@ -21,10 +21,10 @@
                 </h3>
                 <div id="tab1" class="tab_content">
                     <ul class="store-tabs d-flex justify-content-center">
-                        <li class="tab-link current" data-tab="tab-1">Popular</li>
-                        <li class="tab-link" data-tab="tab-2">Recently sold</li>
-                        <li class="tab-link" data-tab="tab-3">New Launch</li>
-                        <li class="tab-link" data-tab="tab-4">Bookmarks</li>
+                        <li class="tab-link current" data-tab="tab-1" (click)="getProductList('bestSellers')">Popular</li>
+                        <li class="tab-link" data-tab="tab-2" (click)="getProductList('recentlySold')">Recently sold</li>
+                        <li class="tab-link" data-tab="tab-3" (click)="getProductList('newLaunched')">New Launch</li>
+                        <li class="tab-link" data-tab="tab-4" (click)="getProductList()">Bookmarks</li>
                     </ul>
 
                    <product-tile [productData]="productData" (productPage)="productDetail($event)"></product-tile>
@@ -32,7 +32,7 @@
             </div>
             <!-- .tab_container -->
         </div>
-        <app-cart></app-cart>
+        <app-cart class="right-section"></app-cart>
     </div>
 
 </ion-content>

@@ -17,7 +17,7 @@ export class PosComponent implements OnInit, OnDestroy {
   categoryData: CategoryResponse;
   productResponse: Subscription;
   productData: ProductResponse;
-  selectedCategory: any = 'all';
+  selectedCategory: any = '';
   selectbookmark: any = '';
   loading:boolean=true;
   dataReturned: any;
@@ -71,6 +71,14 @@ export class PosComponent implements OnInit, OnDestroy {
     this.modalController.dismiss({
       'dismissed': true
     });
+  }
+  getProductList(type:any){
+    this.productResponse = this.http
+    ?.getProduct(this.selectedCategory,type)
+    ?.subscribe((data) => {
+      this.productData = data;
+    });
+
   }
 
   ngOnDestroy(): void {
