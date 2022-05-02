@@ -2,16 +2,8 @@
 <ion-content>
     <div class="site-wrapper d-lg-flex justify-content-md-between">
         <div class="left-section">
-           <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
-            <div *ngIf="loading">
-                <div class="ion-padding custom-skeleton">
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                  <ion-skeleton-text animated></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-                  <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                </div>
-                </div>
+         <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
+          
 
             <div class="tab_container">
                 <h3 class="d_active tab_drawer_heading" rel="tab1">

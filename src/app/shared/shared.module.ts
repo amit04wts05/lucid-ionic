@@ -6,7 +6,6 @@ import { SharedRoutingModule } from './shared-routing.modulet';
 import { CartComponent } from './cart/cart.component';
 import { CategoryTileComponent } from './category-tile/category-tile.component';
 import { ProductTileComponent } from './product-tile/product-tile.component';
-
 @NgModule({
   declarations:[SharedComponent,CartComponent,CategoryTileComponent,ProductTileComponent],
   imports:[
