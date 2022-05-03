@@ -8,6 +8,7 @@ import { ProductResponse } from 'src/app/model/product';
 import { ApiService } from 'src/app/services/apiServices';
 import { ProductModalComponent } from '../modal/product-modal/product-modal.component';
 import { LoaderService } from './../../services/loader-service';
+import { SearchService } from './../../services/search.service';
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
@@ -17,18 +18,25 @@ export class PosComponent implements OnInit, OnDestroy {
   catResponse: Subscription;
   categoryData: CategoryResponse;
   productResponse: Subscription;
-  productData: ProductResponse;
+  productData: Array<ProductResponse>=[];
   selectedCategory: any = '';
   selectbookmark: any = '';
   loading:boolean=true;
   dataReturned: any;
   type='bestSellers';
-
+  searchkey="";
+  offset=0;
+  limit=2;
   constructor(private router: Router, private http: ApiService,public modalController: ModalController,
-    private loader:LoaderService) {}
+    private loader:LoaderService,private searchService:SearchService) {
+      this.searchService.searchSubject.subscribe((data)=>{
+          this.searchkey=data || "";
+          this.loadProduct();
+      })
+    }
 
   ngOnInit(): void {
-   // this.loader.startLoading();
+    this.loader.startLoading();
     this.catResponse = this.http.getCategory().subscribe((data) => {
       this.categoryData = data; 
       this.getProduct();
@@ -38,8 +46,8 @@ export class PosComponent implements OnInit, OnDestroy {
 
 
   loadProduct(id?: any) {
-  //  this.loader.startLoading();
-    this.selectedCategory = id;
+    this.loader.startLoading();
+    this.selectedCategory = id || "";
     this.getProduct();
   }
   addBookmark(id: any) {
@@ -50,10 +58,10 @@ export class PosComponent implements OnInit, OnDestroy {
       this.productResponse.unsubscribe();
     }
     this.productResponse = this.http
-      ?.getProduct(this.selectedCategory)
+      ?.getProduct(this.selectedCategory,this.type,this.searchkey,this.offset,this.limit)
       ?.subscribe((data) => {
         this.productData = data;
-       // this.loader.stopLoading();
+        this.loader.stopLoading();
       });
   }
   async productDetail(productDetail:any) {
@@ -81,13 +89,8 @@ export class PosComponent implements OnInit, OnDestroy {
   }
   getProductList(type:any){
     this.type=type;
-    this.productResponse = this.http
-    ?.getProduct(this.selectedCategory,type)
-    ?.subscribe((data) => {
-      this.productData = data;
-    });
-
-  }
+    this.getProduct();
+ }
 
   ngOnDestroy(): void {
     this.catResponse.unsubscribe();

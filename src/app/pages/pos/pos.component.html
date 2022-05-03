@@ -19,7 +19,8 @@
                         <li class="tab-link" data-tab="tab-4" [class.current]="type==''" (click)="getProductList()">Bookmarks</li>
                     </ul>
 
-                   <product-tile [productData]="productData" (productPage)="productDetail($event)"></product-tile>
+                   <product-tile *ngIf="productData.data.length" [productData]="productData" (productPage)="productDetail($event)"></product-tile>
+                   <div *ngIf="productData.data.length==0">NO PRODUCT</div>
                 </div>
             </div>
             <!-- .tab_container -->
