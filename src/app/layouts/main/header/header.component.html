@@ -9,7 +9,7 @@
       <svg class="icon-search">
           <use xlink:href="./assets/images/svg-sprite.svg#icon-search"></use>
       </svg>
-      <input type="text" class="form-control" placeholder="Search by product name..."/>
+      <input type="text"  (keyup)="getData($event)" class="form-control" placeholder="Search by product name..."/>
   </div>
   <div class="profile-action ms-auto">
       <a href="javascript:void(0)" class="user-profile">
