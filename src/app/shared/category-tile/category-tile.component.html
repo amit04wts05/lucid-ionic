@@ -8,39 +8,15 @@
     </svg>
       All Products
   </li>
- <!---- <li [class.active]="data._id == selectedCategory" (click)="loadProduct(data?._id )" rel="tab2"
-      *ngFor="let data of categoryData?.data index i">
+  <li [class.active]="data._id == selectedCategory" (click)="loadProduct(data?._id )" rel="tab2"
+      *ngFor="let data of categoryData?.data">
       
       <svg class="icon">
-          <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel"></use>
+          <use xlink:href="./assets/images/svg-sprite.svg#{{data.icon}}"></use>
       </svg>
       <svg class="icon-white">
-        <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel-white"></use>
+        <use xlink:href="./assets/images/svg-sprite.svg#{{data.icon}}-white"></use>
     </svg>
       {{data.name}}
-  </li>-->
-<li [class.active]="'62663801406ac89fb01cddd9' == selectedCategory" (click)="loadProduct('62663801406ac89fb01cddd9')">
-   <svg class="icon">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel"></use>
-   </svg>
-   <svg class="icon-white">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-apparel-white"></use>
-     </svg>
-    Apparel</li>
-<li [class.active]="'62663858406ac89fb01cde03' == selectedCategory" (click)="loadProduct('62663858406ac89fb01cde03')" >
-   <svg class="icon">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-cap"></use>
-   </svg>
-   <svg class="icon-white">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-cap-white"></use>
-   </svg>
-    Headwear</li>
-<li [class.active]="'62663871406ac89fb01cde09' == selectedCategory" (click)="loadProduct('62663871406ac89fb01cde09')">
-   <svg class="icon">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-bottle"></use>
-   </svg>
-   <svg class="icon-white">
-       <use xlink:href="./assets/images/svg-sprite.svg#icon-bottle-white"></use>
-   </svg>
-        Merchandise</li>
+  </li>
 </ul>
