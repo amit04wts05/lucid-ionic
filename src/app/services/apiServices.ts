@@ -6,7 +6,7 @@ import { ProductResponse } from "../model/product";
 
 @Injectable()
 export class ApiService{
-  resources = {category:"/category/list",product:"/product/list"}
+  resources = {category:"/categories",product:"/products"}
   constructor(private http:HttpClient){
 
   }
