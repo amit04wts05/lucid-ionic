@@ -21,6 +21,10 @@ export class ApiService {
    
   }
   getProduct(id:any,type,search,offset,limit){
+<<<<<<< HEAD
     return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{categoryId:id,studioId:'62663262406ac89fb01cdc64',type:type,search:search,offset:offset,limit:limit},headers:this.headers});
+=======
+    return  this.http.get<ProductResponse>(environment.url+this.resources.product,{params:{categoryId:id,studioId:'62663262406ac89fb01cdc64',type:type,search:search,offset:offset,limit:limit}});
+>>>>>>> origin/main
    }
 }
