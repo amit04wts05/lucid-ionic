@@ -16,10 +16,11 @@
                         <li class="tab-link" [class.current]="type=='bestSellers'" data-tab="tab-1" (click)="getProductList('bestSellers')">Popular</li>
                         <li class="tab-link" data-tab="tab-2" [class.current]="type=='recentlySold'" (click)="getProductList('recentlySold')">Recently sold</li>
                         <li class="tab-link" data-tab="tab-3" [class.current]="type=='newLaunched'" (click)="getProductList('newLaunched')">New Launch</li>
-                        <li class="tab-link" data-tab="tab-4" [class.current]="type==''" (click)="getProductList()">Bookmarks</li>
+                        <li class="tab-link" data-tab="tab-4" [class.current]="type=='bookMarked'" (click)="getProductList('bookMarked')">Bookmarks</li>
                     </ul>
 
-                   <product-tile [productData]="productData" (productPage)="productDetail($event)"></product-tile>
+                   <product-tile *ngIf="productData.data.length" [productData]="productData" (productPage)="productDetail($event)"></product-tile>
+                   <div *ngIf="productData.data.length==0">NO PRODUCT</div>
                 </div>
             </div>
             <!-- .tab_container -->

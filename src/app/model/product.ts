@@ -1,6 +1,6 @@
 import { Category } from "./category"
 
-export interface ProductResponse{
+export interface ProductResponse  extends Array<any>{
   "statusCode": number,
   "message": string,
   "totalData": number,
