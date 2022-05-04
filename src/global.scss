@@ -35,6 +35,16 @@ ion-content{
 ion-backdrop{
   display: none;
 }
+.active .modal-backdrop-bg {
+  opacity: 0;
+}
+ion-modal {
+	ion-backdrop {
+		@media not all and (min-height: 600px) and (min-width: 768px) {
+			display: unset;
+		}
+	}
+}
 
 
 

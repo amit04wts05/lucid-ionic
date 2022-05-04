@@ -15,6 +15,7 @@ export class ProductModalComponent implements OnInit {
     initialSlide: 0,
     speed: 400,
     loop: true,
+    showBackdrop : false,
     autoplay: {
       delay: 2000,
     },
