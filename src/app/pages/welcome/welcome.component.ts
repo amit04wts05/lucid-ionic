@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { EmployeeService } from './../../services/employee-service';
 import { EmployeeResponse } from 'src/app/model/employee';
 import { LoaderService } from 'src/app/services/loader-service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   templateUrl: 'welcome.component.html',
@@ -13,9 +14,10 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   empResponse: Subscription;
   employeeData: any;
   constructor(
-    private router: Router,
+
     private emp: EmployeeService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private navCtr:NavController
   ) {}
   ngOnInit(): void {
     this.loader.startLoading();
@@ -24,7 +26,9 @@ export class WelcomeComponent implements OnInit, OnDestroy {
       this.employeeData = data;
     });
   }
-
+  authenticationPage(id){
+    this.navCtr.navigateForward(["/authentication"],{queryParams:{id:id}});
+  }
   ngOnDestroy(): void {
     this.empResponse.unsubscribe();
   }

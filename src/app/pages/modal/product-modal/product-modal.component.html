@@ -28,8 +28,8 @@
       <h4 *ngIf="data.variants.length>0">Choose size</h4>
       <ul class="custom-radio-button d-flex flex-wrap">
         <li *ngFor="let variant of data.variants">
-          <div class="form-group" (click)="size = variant">
-            <input type="radio" [(ngModel)]="size" id="{{variant.size}}" [value]="variant._id" name="size" checked />
+          <div class="form-group" (click)="size = variant._id">
+            <input type="radio"  id="{{variant._id}}" [value]="variant._id" name="size" [checked]="size == variant._id" />
             <label for="{{variant.size}}">{{variant.size}}</label>
           </div>
         </li>
@@ -44,7 +44,7 @@
         <div class="quantity-available">Quantity available in stock: <span>430</span></div>
         <div class="product-health good">Good Stock health</div>
       </div>
-      <a href="javascript:void(0)" (click)="addCart(data)" class="store-btn-lg btn-blue">Add to Order</a>
+      <button  (click)="addCart(data)" [disabled]="(qty <= 0 || size == null)" class="store-btn-lg btn-blue"> Add to Order</button>
     </div>
 
   </div>

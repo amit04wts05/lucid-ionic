@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api-service';
 import { ProductModalComponent } from '../modal/product-modal/product-modal.component';
 import { LoaderService } from './../../services/loader-service';
 import { SearchService } from './../../services/search.service';
+import { CartService } from 'src/app/services/cart-service';
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
@@ -19,6 +20,7 @@ export class PosComponent implements OnInit, OnDestroy {
   categoryData: CategoryResponse;
   productResponse: Subscription;
   productData: Array<ProductResponse>=[];
+
   selectedCategory: any = '';
   selectbookmark: any = '';
   loading:boolean=true;
@@ -28,17 +30,18 @@ export class PosComponent implements OnInit, OnDestroy {
   offset=0;
   limit=2;
   constructor(private router: Router, private http: ApiService,public modalController: ModalController,
-    private loader:LoaderService,private searchService:SearchService) {
+    private loader:LoaderService,private searchService:SearchService,private cartService:CartService) {
       this.searchService.searchSubject.subscribe((data)=>{
           this.searchkey=data || "";
           this.loadProduct();
       })
+
     }
 
   ngOnInit(): void {
     this.loader.startLoading();
     this.catResponse = this.http.getCategory().subscribe((data) => {
-      this.categoryData = data; 
+      this.categoryData = data;
       this.getProduct();
     },
    );
@@ -96,5 +99,6 @@ export class PosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.catResponse.unsubscribe();
     this.productResponse.unsubscribe();
+
   }
 }

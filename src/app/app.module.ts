@@ -10,13 +10,14 @@ import { EmployeeService } from './services/employee-service';
 import {LoaderComponent} from './shared/loader/loader.component'
 import { TokenInterceptorService } from './services/token-interceptor-service';
 import { HeaderInterceptorService } from './services/header-interceptor-service';
+import { CartService } from './services/cart-service';
 
 
 @NgModule({
   declarations: [AppComponent,LoaderComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorService, multi: true },EmployeeService,ApiService],
+  providers: [CartService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorService, multi: true },EmployeeService,ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -3,12 +3,12 @@
     <h2 class="ion-text-center">Who is using Studio</h2>
     <div class="container">
         <div  *ngIf="employeeData" class="row user-row align-items-center justify-content-center">
-          
-            
-        
-        <div *ngFor="emp of  employeeData.data" class="col-md-3 col-sm-6 d-inline-flex justify-content-center">
+
+
+
+        <div *ngFor="let emp of  employeeData.data" class="col-md-3 col-sm-6 d-inline-flex justify-content-center">
             <div class="user-box d-flex flex-column align-items-center aos"  data-aos-delay="1100">
-                <a routerLink="/authentication" routerDirection="forward">
+                <a (click)="authenticationPage(emp._id)">
                 <div class="user-img">
                     <img [src]="emp.image" alt=""/>
                 </div>
