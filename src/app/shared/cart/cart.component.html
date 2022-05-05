@@ -5,7 +5,7 @@
     <a href="javascript:void(0)"><svg class="icon">
         <use xlink:href="./assets/images/svg-sprite.svg#icon-tag"></use>
     </svg></a>
-    <a href="javascript:void(0)"><svg class="icon">
+    <a href="javascript:void(0)" (click)="clearCart()"><svg class="icon">
         <use xlink:href="./assets/images/svg-sprite.svg#icon-bin"></use>
     </svg></a>
 </div>
@@ -18,49 +18,36 @@
         Look up customer</a>
         <a href="javascript:void(0)" class="store-btn btn-border">Create New</a>
 </div>
-    <ul class="cart-product-list">
-        <li class="d-flex align-items-center">
+    <ul class="cart-product-list" *ngIf="cartData.items">
+        <li class="d-flex align-items-center" *ngFor="let cart of cartData.items">
             <a href="javascript:void(0)" class="remove-btn"></a>
             <div class="product-info d-flex">
                 <div class="image">
                     <img src="./assets/images/cart-product-thumb.png" alt=""/>
                 </div>
                 <div class="product-content">
-                    <h4>Men's - Polo Shirt - White</h4>
-                    <div class="quantity">Quantity <span>1</span></div>
+                    <h4>{{cart.name}}</h4>
+                    <div class="quantity">Quantity <span>{{cart.qty}}</span></div>
                 </div>
-                <div class="price">$68.00</div>
-            </div>
-        </li>
-        <li class="d-flex align-items-center">
-            <a href="javascript:void(0)" class="remove-btn"></a>
-            <div class="product-info d-flex">
-                <div class="image">
-                    <img src="./assets/images/cart-product-thumb-cup.png" alt=""/>
-                </div>
-                <div class="product-content">
-                    <h4>Camp Cup - White</h4>
-                    <div class="quantity">Quantity <span>1</span></div>
-                </div>
-                <div class="price">$28.00</div>
+                <div class="price">${{cart.price}}</div>
             </div>
         </li>
     </ul>
     <div class="product-bill-wrapper">
         <div class="bill-row d-flex justify-content-between align-items-center">
             <div class="subtotal">Sub Total</div>
-            <div class="sub-amount">$96.00</div>
+            <div class="sub-amount">${{cartData?.subTotal}}</div>
         </div>
         <div class="tax-amount d-flex justify-content-between align-items-center">
-            <div class="tax">Sales Tax (5.7%)</div>
-            <div class="sub-amount">$5.40</div>
+            <div class="tax">Sales Tax </div>
+            <div class="sub-amount">${{cartData.tax}}</div>
         </div>
         <div class="pay-amount d-flex justify-content-between align-items-center">
             <div class="tax">You will Pay</div>
-            <div class="sub-amount">$101.40</div>
+            <div class="sub-amount">${{cartData.total}}</div>
         </div>
     </div>
-    <button class="store-btn-lg btn-blue">Pay $101.40</button>
+    <button class="store-btn-lg btn-blue">Pay ${{cartData.total}}</button>
      <div class="empty-bag">
         <svg class="icon">
             <use xlink:href="./assets/images/svg-sprite.svg#icon-bear"></use>

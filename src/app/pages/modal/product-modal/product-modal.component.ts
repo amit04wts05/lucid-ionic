@@ -9,7 +9,7 @@ import { CartService } from 'src/app/services/cart-service';
 })
 export class ProductModalComponent implements OnInit {
   @ViewChild('sliderIndex', { read: false, static: false }) viewer: ElementRef;
-  qty: any = 0;
+  qty: any = 1;
   size: any = null;
   product:any;
   activeThumb: 0;

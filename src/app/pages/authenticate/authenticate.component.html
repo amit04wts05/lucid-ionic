@@ -1,32 +1,32 @@
-<ion-content >
-<div class="text-center">
-    <h2>Who is using Scottsdale AZ Studio</h2>
-    <div class="container">
-        <div class="row user-row align-items-center justify-content-center flex-column">
-            <div class="col-md-3 col-sm-6 d-inline-flex justify-content-center">
-                <div class="user-box d-flex flex-column align-items-center">
-                    <a routerLink="/pos" class="block-link"></a>
+<ion-content>
+    <div class="text-center">
+        <h2>Who is using Scottsdale AZ Studio</h2>
+        <div class="container">
+            <div class="row user-row align-items-center justify-content-center flex-column">
+                <div class="col-md-3 col-sm-6 d-inline-flex justify-content-center">
+                    <div class="user-box d-flex flex-column align-items-center">
+                        <a routerLink="/pos" class="block-link"></a>
                         <div class="user-img">
-                            <img src="./assets/images/user-img-1.png" alt=""/>
+                            <img src="./assets/images/user-img-1.png" alt="" />
                         </div>
                         <div class="content">
-                            <h3>George Gouse</h3>
+                            <h3>{{loginData.data.firstName+' '+loginData.data.lastName}}</h3>
                         </div>
+                    </div>
                 </div>
-            </div>
-            <div class="password-wrapper d-flex align-items-center justify-content-center">
-                <input class="inputs" type="password" maxlength="1" placeholder="0" />
-                <input class="inputs" type="password" maxlength="1" placeholder="0"/>
-                <input class="inputs" type="password" maxlength="1"  placeholder="0"/>
-                <input class="inputs" type="password" maxlength="1"  placeholder="0"/>
-            </div>
-            <div class="finger-print" routerLink="/pos" routerDirection="root">
-                <svg class="icon">
-                    <use xlink:href="./assets/images/svg-sprite.svg#icon-finger-print"></use>
-                </svg>
-                  </div>
+                <div class="password-wrapper d-flex align-items-center justify-content-center">
+                    <input class="inputs" type="password" maxlength="1" placeholder="0" />
+                    <input class="inputs" type="password" maxlength="1" placeholder="0" />
+                    <input class="inputs" type="password" maxlength="1" placeholder="0" />
+                    <input class="inputs" type="password" maxlength="1" placeholder="0" />
+                </div>
+                <div class="finger-print" routerLink="/pos" routerDirection="root">
+                    <svg class="icon">
+                        <use xlink:href="./assets/images/svg-sprite.svg#icon-finger-print"></use>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
 
-  </ion-content >
+</ion-content>

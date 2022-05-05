@@ -14,8 +14,8 @@
   <div class="profile-action ms-auto">
       <a href="javascript:void(0)" class="user-profile">
           <img src="./assets/images/profile-img.png" alt=""/>
-          <span>James Gouse</span>
+          <span *ngIf="empname">{{empname}}</span>
       </a>
-      <a href="javascript:void(0)" class="store-btn btn-border">Log out</a>
+      <a href="javascript:void(0)"(click)="logout()" class="store-btn btn-border">Log out</a>
   </div>
 </ion-header>

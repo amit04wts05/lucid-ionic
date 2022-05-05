@@ -20,10 +20,11 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     private navCtr:NavController
   ) {}
   ngOnInit(): void {
-    this.loader.startLoading();
+    this.loader.simpleLoader();
     this.empResponse = this.emp.getEmployee().subscribe((data) => {
       console.log(data)
       this.employeeData = data;
+      this.loader.dismissLoader();
     });
   }
   authenticationPage(id){

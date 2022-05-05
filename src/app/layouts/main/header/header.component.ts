@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from './../../../services/search.service'
 
 @Component({
@@ -7,9 +8,14 @@ import { SearchService } from './../../../services/search.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService,private _router: Router) { }
   searchKey = "";
+  empname='';
+
   ngOnInit(): void {
+    if(localStorage.getItem("name")){
+      this.empname=localStorage.getItem("name")
+         }
   }
   getData(event) {
     if (this.searchKey) {
@@ -19,6 +25,11 @@ export class HeaderComponent implements OnInit {
       this.searchKey = event.target.value;
       this.searchService.setsearchkey(event.target.value)
     }
+  }
+  logout(){
+    localStorage.clear();
+    this._router.navigate(['']);
+
   }
 
 }
