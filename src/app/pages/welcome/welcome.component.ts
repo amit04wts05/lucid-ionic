@@ -11,7 +11,7 @@ import { LoaderService } from 'src/app/services/loader-service';
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
   empResponse: Subscription;
-  employeeData: EmployeeResponse;
+  employeeData: any;
   constructor(
     private router: Router,
     private emp: EmployeeService,
@@ -20,6 +20,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loader.startLoading();
     this.empResponse = this.emp.getEmployee().subscribe((data) => {
+      console.log(data)
       this.employeeData = data;
     });
   }

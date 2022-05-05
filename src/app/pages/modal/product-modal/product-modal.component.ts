@@ -53,8 +53,7 @@ export class ProductModalComponent implements OnInit {
   }
   addCart(productId) {
 
-console.log(this.qty,this.size,productId._id
-  )
+console.log(this.qty,this.size,productId._id)
   }
   ngOnInit() {}
 }

@@ -4,12 +4,12 @@ import { environment } from '../../environments/environment';
 import { EmployeeResponse } from '../model/employee';
 
 @Injectable()
-export class EmployeeService {
-  resources = { emp: '/employees' };
+export class CartService {
+  resources = { category: '/addToCart' };
   constructor(private http: HttpClient) {}
   
-  getEmployee(){
-   return  this.http.get<EmployeeResponse>(environment.url+this.resources.emp,{params:{studioId:'62663262406ac89fb01cdc64'}});
+  addCart(){
+   return  this.http.post(environment.url+this.resources.category,{params:{studioId:'62663262406ac89fb01cdc64'}});
    
   }
  
