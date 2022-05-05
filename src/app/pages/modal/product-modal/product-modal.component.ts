@@ -10,19 +10,15 @@ export class ProductModalComponent implements OnInit {
   @ViewChild('sliderIndex', { read: false, static: false }) viewer: ElementRef;
   qty: any = 1;
   size: any;
+  activeThumb: 0;
 
   slideOpts = {
     initialSlide: 0,
     speed: 400,
     loop: true,
     showBackdrop : false,
-    autoplay: {
-      delay: 2000,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
+    autoplay: false,
+    pagination: false,
   };
   constructor(
     private modalController: ModalController,
@@ -30,6 +26,7 @@ export class ProductModalComponent implements OnInit {
   ) {}
   toChange(i) {
     this.viewer.nativeElement?.slideTo(i + 1, 500);
+    this.activeThumb = i;
   }
   async closeModal() {
     const onClosedData = 'Wrapped Up!';

@@ -16,7 +16,7 @@
     </ion-slides>
 
     <div class="slider-nav">
-        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="toChange(i)">
+        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="toChange(i)" [ngClass]="{'active': activeThumb === i}">
             <img class="img-size" [src]="timg.image" alt=""/>
         </div>
 
