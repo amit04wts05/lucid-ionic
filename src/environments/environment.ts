@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: "https://lucid.copancs.com/api/v1"
+  url: "https://lucid.copancs.co/api/v1"
 };
 
 /*

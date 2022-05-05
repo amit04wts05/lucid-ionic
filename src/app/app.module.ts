@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import {HttpClientModule} from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ApiService } from './services/apiServices';
+import { ApiService } from './services/api-service';
 import {LoaderComponent} from './shared/loader/loader.component'
+import { TokenInterceptorService } from './services/token-interceptor-service';
 
 @NgModule({
   declarations: [AppComponent,LoaderComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },ApiService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },,ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

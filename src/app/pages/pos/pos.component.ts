@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { CategoryResponse } from 'src/app/model/category';
 import { ProductResponse } from 'src/app/model/product';
-import { ApiService } from 'src/app/services/apiServices';
+import { ApiService } from '../../services/api-service';
 import { ProductModalComponent } from '../modal/product-modal/product-modal.component';
 import { LoaderService } from './../../services/loader-service';
 import { SearchService } from './../../services/search.service';
@@ -18,36 +18,39 @@ export class PosComponent implements OnInit, OnDestroy {
   catResponse: Subscription;
   categoryData: CategoryResponse;
   productResponse: Subscription;
-  productData: Array<ProductResponse>=[];
+  productData: Array<ProductResponse> = [];
   selectedCategory: any = '';
   selectbookmark: any = '';
-  loading:boolean=true;
+  loading: boolean = true;
   dataReturned: any;
-  type='bestSellers';
-  searchkey="";
-  offset=0;
-  limit=2;
-  constructor(private router: Router, private http: ApiService,public modalController: ModalController,
-    private loader:LoaderService,private searchService:SearchService) {
-      this.searchService.searchSubject.subscribe((data)=>{
-          this.searchkey=data || "";
-          this.loadProduct();
-      })
-    }
+  type = 'bestSellers';
+  searchkey = '';
+  offset = 0;
+  limit = 2;
+  constructor(
+    private router: Router,
+    private http: ApiService,
+    public modalController: ModalController,
+    private loader: LoaderService,
+    private searchService: SearchService
+  ) {
+    this.searchService.searchSubject.subscribe((data) => {
+      this.searchkey = data || '';
+      this.loadProduct();
+    });
+  }
 
   ngOnInit(): void {
     this.loader.startLoading();
     this.catResponse = this.http.getCategory().subscribe((data) => {
-      this.categoryData = data; 
+      this.categoryData = data;
       this.getProduct();
-    },
-   );
+    });
   }
 
-
   loadProduct(id?: any) {
-    this.loader.startLoading();
-    this.selectedCategory = id || "";
+    this.loader.simpleLoader();
+    this.selectedCategory = id || '';
     this.getProduct();
   }
   addBookmark(id: any) {
@@ -58,19 +61,25 @@ export class PosComponent implements OnInit, OnDestroy {
       this.productResponse.unsubscribe();
     }
     this.productResponse = this.http
-      ?.getProduct(this.selectedCategory,this.type,this.searchkey,this.offset,this.limit)
+      ?.getProduct(
+        this.selectedCategory,
+        this.type,
+        this.searchkey,
+        this.offset,
+        this.limit
+      )
       ?.subscribe((data) => {
         this.productData = data;
-        this.loader.stopLoading();
+        this.loader.dismissLoader();
       });
   }
-  async productDetail(productDetail:any) {
-    console.log(productDetail)
+  async productDetail(productDetail: any) {
+    console.log(productDetail);
     const modal = await this.modalController.create({
       component: ProductModalComponent,
       componentProps: {
-        "data": productDetail
-      }
+        data: productDetail,
+      },
     });
 
     modal.onDidDismiss().then((dataReturned) => {
@@ -82,15 +91,15 @@ export class PosComponent implements OnInit, OnDestroy {
 
     return await modal.present();
   }
-  closeModal(){
+  closeModal() {
     this.modalController.dismiss({
-      'dismissed': true
+      dismissed: true,
     });
   }
-  getProductList(type:any){
-    this.type=type;
+  getProductList(type: any) {
+    this.type = type;
     this.getProduct();
- }
+  }
 
   ngOnDestroy(): void {
     this.catResponse.unsubscribe();

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from "rxjs";
+import { Subject, Observable } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoaderService {
+  constructor(public loadingController: LoadingController) {}
 
   private _loading: boolean = false;
   private _blog: boolean = false;
@@ -13,6 +15,27 @@ export class LoaderService {
 
   get loading(): boolean {
     return this._loading;
+  }
+
+  simpleLoader() {
+    this.loadingController
+      .create({
+        message: 'Please...',
+      })
+      .then((response) => {
+        response.present();
+      });
+  }
+  // Dismiss loader
+  dismissLoader() {
+    this.loadingController
+      .dismiss()
+      .then((response) => {
+        console.log('Loader closed!', response);
+      })
+      .catch((err) => {
+        console.log('Error occured : ', err);
+      });
   }
 
   set loading(value) {
