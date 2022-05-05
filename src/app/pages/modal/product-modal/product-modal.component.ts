@@ -10,13 +10,14 @@ export class ProductModalComponent implements OnInit {
   @ViewChild('sliderIndex', { read: false, static: false }) viewer: ElementRef;
   qty: any = 1;
   size: any;
+  product:any;
   activeThumb: 0;
 
   slideOpts = {
     initialSlide: 0,
     speed: 400,
     loop: true,
-    showBackdrop : false,
+    showBackdrop: false,
     autoplay: false,
     pagination: false,
   };
@@ -36,7 +37,7 @@ export class ProductModalComponent implements OnInit {
     this.qty = this.qty + 1;
   }
   qtyDecriment() {
-    if (this.qty > 0) {
+    if (this.qty > 1) {
       this.qty = this.qty - 1;
     }
   }
@@ -50,6 +51,10 @@ export class ProductModalComponent implements OnInit {
       console.log('End of slide', istrue);
     });
   }
-  // this.cd.detectChanges();
+  addCart(productId) {
+
+console.log(this.qty,this.size,productId._id
+  )
+  }
   ngOnInit() {}
 }

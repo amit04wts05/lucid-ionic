@@ -1,50 +1,52 @@
-  <div id="lucid-cart-modal">
+<div id="lucid-cart-modal">
   <ion-header [translucent]="true" class="lucid-modal-header">
-      <h2 class="modal-title">{{data.name}}</h2>
-      <a  (click)="closeModal()" href="javascript:void(0)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
-</ion-header>
+    <h2 class="modal-title">{{data.name}}</h2>
+    <a (click)="closeModal()" href="javascript:void(0)" class="btn-close" data-bs-dismiss="modal"
+      aria-label="Close"></a>
+  </ion-header>
 
-<div class="modal-body modal-body d-lg-flex justify-content-between">
+  <div class="modal-body modal-body d-lg-flex justify-content-between">
 
 
-  <div class="product-slider">
-    <ion-slides #sliderIndex pager="true" [options]="slideOpts" id="sliderIndex">
-    <!--<ion-slides   #sliderIndex  pager="true" >-->
-      <ion-slide  *ngFor="let img of data.images">
-        <img [src]="img.image" alt=""/>
-      </ion-slide>
-    </ion-slides>
+    <div class="product-slider">
+      <ion-slides #sliderIndex pager="true" [options]="slideOpts" id="sliderIndex">
+        <!--<ion-slides   #sliderIndex  pager="true" >-->
+        <ion-slide *ngFor="let img of data.images">
+          <img [src]="img.image" alt="" />
+        </ion-slide>
+      </ion-slides>
 
-    <div class="slider-nav">
-        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="toChange(i)" [ngClass]="{'active': activeThumb === i}">
-            <img class="img-size" [src]="timg.image" alt=""/>
+      <div class="slider-nav">
+        <div class="thumb-image" *ngFor="let timg of data.images; index as i " (click)="toChange(i)"
+          [ngClass]="{'active': activeThumb === i}">
+          <img class="img-size" [src]="timg.image" alt="" />
         </div>
 
+      </div>
     </div>
-</div>
-<div class="product-detail">
-  <h4 *ngIf="data.variants.length>0">Choose size</h4>
-  <ul class="custom-radio-button d-flex flex-wrap">
-      <li *ngFor="let variant of data.variants">
-        <div class="form-group" (click)="size = variant">
-            <input type="radio" id="{{variant.size}}" name="size" checked/>
+    <div class="product-detail">
+      <h4 *ngIf="data.variants.length>0">Choose size</h4>
+      <ul class="custom-radio-button d-flex flex-wrap">
+        <li *ngFor="let variant of data.variants">
+          <div class="form-group" (click)="size = variant">
+            <input type="radio" [(ngModel)]="size" id="{{variant.size}}" [value]="variant._id" name="size" checked />
             <label for="{{variant.size}}">{{variant.size}}</label>
           </div>
-      </li>
-  </ul>
-  <h4>Choose quantity</h4>
-  <div class="quantity-wrapper">
-    <button class="decrement" (click)="qtyDecriment()"><i class="fa fa-chevron-left"></i></button>
-    <input class="counter" type='text' [(ngModel)]="qty">
-    <button class="increment" (click)="qtyIncrease()"><i class="fa fa-chevron-right"></i></button>
-  </div>
-  <div class="product-info">
-    <div class="quantity-available">Quantity available in stock: <span>430</span></div>
-    <div class="product-health good">Good Stock health</div>
-</div>
-  <a href="javascript:void(0)" class="store-btn-lg btn-blue">Add to Order</a>
-</div>
+        </li>
+      </ul>
+      <h4>Choose quantity</h4>
+      <div class="quantity-wrapper">
+        <button class="decrement" (click)="qtyDecriment()"><i class="fa fa-chevron-left"></i></button>
+        <input class="counter" type='text' [(ngModel)]="qty">
+        <button class="increment" (click)="qtyIncrease()"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="product-info">
+        <div class="quantity-available">Quantity available in stock: <span>430</span></div>
+        <div class="product-health good">Good Stock health</div>
+      </div>
+      <a href="javascript:void(0)" (click)="addCart(data)" class="store-btn-lg btn-blue">Add to Order</a>
+    </div>
 
+  </div>
 </div>
-</div>
-  <!-- Modal -->
+<!-- Modal -->

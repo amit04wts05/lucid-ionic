@@ -6,14 +6,17 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ApiService } from './services/api-service';
+import { EmployeeService } from './services/employee-service';
 import {LoaderComponent} from './shared/loader/loader.component'
 import { TokenInterceptorService } from './services/token-interceptor-service';
+import { HeaderInterceptorService } from './services/header-interceptor-service';
+
 
 @NgModule({
   declarations: [AppComponent,LoaderComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },,ApiService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorService, multi: true },EmployeeService,ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
