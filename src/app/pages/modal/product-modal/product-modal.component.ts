@@ -27,7 +27,8 @@ export class ProductModalComponent implements OnInit {
     private modalController: ModalController,
     private navParams: NavParams,
     private http: CartService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private cartService:CartService
   ) {}
   toChange(i) {
     this.viewer.nativeElement?.slideTo(i + 1, 500);
@@ -58,9 +59,11 @@ export class ProductModalComponent implements OnInit {
   addCart(productId) {
     this.loader.startLoading();
     this.http.addCart(productId._id, this.qty, this.size).subscribe((data) => {
-      console.log(data);
+
+      this.cartService.refreshCart.next('');
       this.closeModal();
       this.loader.dismissLoader();
+
     }),
       (err) => {
         console.log(err);

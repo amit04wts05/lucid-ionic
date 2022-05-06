@@ -101,7 +101,12 @@ export class PosComponent implements OnInit, OnDestroy {
     } else {
       this.cartService
         .addCart(productDetail._id, this.qty, '')
-        .subscribe((data) => {this.closeModal}),
+        .subscribe((data) => {
+          console.log("refresh cart");
+          this.cartService.refreshCart.next("");
+
+
+        }),
         (err) => {
           console.log(err);
         };

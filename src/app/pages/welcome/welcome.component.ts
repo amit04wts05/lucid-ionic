@@ -21,9 +21,12 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit(): void {
     this.loader.simpleLoader();
+
     this.empResponse = this.emp.getEmployee().subscribe((data) => {
       console.log(data)
       this.employeeData = data;
+      this.loader.dismissLoader();
+    },err=>{
       this.loader.dismissLoader();
     });
   }

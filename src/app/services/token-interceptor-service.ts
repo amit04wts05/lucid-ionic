@@ -22,7 +22,7 @@ export class TokenInterceptorService implements HttpInterceptor {
       'Content-Type': 'application/json',
     };
     let empData = JSON.parse(localStorage.getItem('empData'));
-    if (empData.token) {
+    if (empData?.token) {
       headers['Authorization'] = `Bearer ${empData.token}`;
     }
     return next.handle(httpRequest.clone({ setHeaders: headers }));
