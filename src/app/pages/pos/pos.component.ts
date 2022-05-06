@@ -29,7 +29,8 @@ export class PosComponent implements OnInit, OnDestroy {
   type = 'bestSellers';
   searchkey = '';
   offset = 0;
-  limit = 2;
+  limit = 20;
+  qty = 1;
   constructor(
     private router: Router,
     private product: ProductService,
@@ -80,22 +81,31 @@ export class PosComponent implements OnInit, OnDestroy {
   }
   async productDetail(productDetail: any) {
     console.log(productDetail);
-    const modal = await this.modalController.create({
-      component: ProductModalComponent,
-      componentProps: {
-        data: productDetail,
-      },
-      cssClass: 'product-popup',
-    });
+    if (productDetail.hasOptions) {
+      const modal = await this.modalController.create({
+        component: ProductModalComponent,
+        componentProps: {
+          data: productDetail,
+        },
+        cssClass: 'product-popup',
+      });
 
-    modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
-        this.dataReturned = dataReturned.data;
-        //alert('Modal Sent Data :'+ dataReturned);
-      }
-    });
+      modal.onDidDismiss().then((dataReturned) => {
+        if (dataReturned !== null) {
+          this.dataReturned = dataReturned.data;
+          //alert('Modal Sent Data :'+ dataReturned);
+        }
+      });
 
-    return await modal.present();
+      return await modal.present();
+    } else {
+      this.cartService
+        .addCart(productDetail._id, this.qty, '')
+        .subscribe((data) => {this.closeModal}),
+        (err) => {
+          console.log(err);
+        };
+    }
   }
   closeModal() {
     this.modalController.dismiss({

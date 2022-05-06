@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart-service';
 
 @Component({
@@ -10,7 +11,7 @@ import { CartService } from 'src/app/services/cart-service';
 export class CartComponent implements OnInit {
   cartRefreshService: Subscription;
   cartData: any;
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService,private _router: Router) {
     this.subscribeRefreshCart();
   }
   subscribeRefreshCart() {
@@ -28,11 +29,14 @@ export class CartComponent implements OnInit {
     this.cartService.refreshCart.next('');
   }
   clearCart() {
-    if(localStorage.getItem("employeeId")){
-    this.cartService.clearCart(localStorage.getItem("employeeId")).subscribe((data)=>{
-
-    })
+    if (localStorage.getItem('employeeId')) {
+      this.cartService
+        .clearCart(localStorage.getItem('employeeId'))
+        .subscribe((data) => {});
+    }
   }
+  payNow(){
+    this._router.navigate(['payment']);
 
   }
   ngOnInit() {}

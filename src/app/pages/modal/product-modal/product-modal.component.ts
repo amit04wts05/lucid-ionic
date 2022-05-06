@@ -11,7 +11,7 @@ export class ProductModalComponent implements OnInit {
   @ViewChild('sliderIndex', { read: false, static: false }) viewer: ElementRef;
   qty: any = 1;
   size: any = null;
-  product:any;
+  product: any;
   activeThumb: 0;
 
   slideOpts = {
@@ -25,7 +25,7 @@ export class ProductModalComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
-    private http:CartService
+    private http: CartService
   ) {}
   toChange(i) {
     this.viewer.nativeElement?.slideTo(i + 1, 500);
@@ -54,14 +54,13 @@ export class ProductModalComponent implements OnInit {
     });
   }
   addCart(productId) {
-
-
-this.http.addCart(productId._id,this.qty,this.size).subscribe((data)=>{
-console.log(data);
-
-},),err=>{
-  console.log(err);
-}
+    this.http.addCart(productId._id, this.qty, this.size).subscribe((data) => {
+      console.log(data);
+      this.closeModal();
+    }),
+      (err) => {
+        console.log(err);
+      };
   }
   ngOnInit() {}
 }

@@ -105,9 +105,6 @@
     object-fit: cover;
     object-position: center;
 }
-.modal-default .modal-body .product-slider .slider-nav .thumb-image.active{
-    
-}
 .modal-default .modal-body .product-detail {
     padding-left: 50px;
     -webkit-box-flex: 1;
@@ -241,4 +238,390 @@
 
 .header-md::after{
     display: none !important;
+}
+
+/* Custom CSS */
+#site-header .brand{
+    text-decoration: none;
+  }
+  #site-header .brand .sidebar-left {
+    fill: #000;
+    width: 25px;
+    height: 20px;
+    margin-right: 12px;
+  }
+  #site-header .brand h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
+  .site-wrapper .right-section .order-summary-head a {
+    color: #456BD9;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+  .site-wrapper .right-section .order-summary-head a .icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+  }
+  .site-wrapper .right-section .add-customer-box {
+    border: 1px dashed #CACACA;
+    border-radius: 10px;
+    
+    margin: 10px 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 10px 15px;
+  justify-content: space-between;
+  }
+  .site-wrapper .right-section .add-customer-box .add-customer{
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #456BD9;
+    font-family: 'Poppins', sans-serif !important;
+    margin-top: 0;
+  }
+  .site-wrapper .right-section .add-customer-box .add-customer svg {
+    fill: #456BD9;
+    margin-right: 10px;
+    width: 20px;
+    height: 22px;
+  }
+  .site-wrapper .right-section .add-customer-box .btn-border{
+    font-size: .875rem;
+    padding: 10px 20px;
+  }
+  .site-wrapper .right-section .button-wrapper .btn-blue{
+    flex-grow: 1;
+    width: auto;
+    border: 0;
+  }
+  .site-wrapper .right-section .button-wrapper .btn-border{
+    flex-shrink: 0;
+    width: 100%;
+    margin-right: 10px;
+    max-width: 148px;
+    background: #fff;
+  }
+  .site-wrapper .right-section .button-wrapper .btn-border:hover{
+    background: #456BD9;
+    border-color: #456BD9;
+  }
+
+  /* Promo Code Modal */
+  .promocode-modal .modal-dialog{
+    max-width: 450px;
+  }
+  .promocode-modal .modal-dialog .modal-content{
+    padding: 50px;
+  }
+  .site-wrapper .right-section .product-bill-wrapper .promo-tag{
+    margin-bottom: 10px;
+  }
+  .site-wrapper .right-section .product-bill-wrapper .promo-tag .sub-amount{
+    color: #5C5C5C;
+    font-size: 14px;
+  }
+  .site-wrapper .right-section .product-bill-wrapper .promo-tag .tag{
+    background: #F5F4F4;
+    border-radius: 10px;
+    padding: 11px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+ .site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .icon-icon-tag{
+    font-size: 22px;
+    color: #000;
+    margin-right: 7px;
+}
+.site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .remove{
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: block;
+  margin-left: 15px;
+  text-decoration: none;
+}
+.site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .remove:after, .site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .remove:before{
+  content: "";
+  position: absolute;
+  background: #7D7D7D;
+  width: 16px;
+  height: 1px;
+  top: 7px;
+}
+.site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .remove:after{
+  transform: rotate(45deg);
+}
+.site-wrapper .right-section .product-bill-wrapper .promo-tag .tag .remove:before{
+  transform: rotate(-45deg);
+}
+   .lucid-modal .modal-dialog .form-row{
+    margin-bottom: 10px;
+  }
+  .lucid-modal .modal-dialog .form-row .form-control {
+    border: 1px solid #CACACA;
+    border-radius: 10px;
+    padding: 12px;
+    color: #000;
+  }
+   .lucid-modal .modal-dialog .form-row .form-control:focus{
+    box-shadow: none;
+    border-color: transparent;
+		outline: none;
+    box-shadow: 0px 0px 0px 2px #456bd9;
+  }
+  .lucid-modal .modal-dialog .form-row.expired .form-control{
+    border-color: transparent;
+    box-shadow: 0px 0px 0px 2px #FF3C3C;
+    background: #FBEFEF;
+  }
+  .lucid-modal .modal-dialog .form-row.expired .form-control:focus{
+    box-shadow: 0px 0px 0px 2px #FF3C3C;
+ }
+ .lucid-modal .modal-dialog .form-row.expired label{
+    font-family: 'Poppins', sans-serif; 
+    color: #FF3C3C;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .lucid-modal .modal-dialog .form-row.expired label .icon-icon-error-info{
+    font-size: 13px;
+    margin-right: 5px;
+  }
+  .lucid-modal .modal-dialog .form-row:last-child{
+    margin-bottom: 0;
+  }
+  .promocode-modal .modal-dialog .form-row .store-btn-lg{
+    width: 100%;
+    border: 0;
+  }
+
+  /* Cash Flow */
+  .cash-flow{
+    background: #f1f1f1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .cash-flow .cashflow-container{
+    max-width: 450px;
+    margin: 15px auto 0;
+  }
+  .cash-flow .cashflow-container .cash-flow-img{
+    margin-bottom: 65px;
+  }
+  .cash-flow .cashflow-container h2{
+    font-size: 34px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif !important;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .cash-flow .totalpay-amount{
+    font-size: 100px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif !important;
+    line-height: 1;
+    margin-bottom: 15px;
+  }
+  .cash-flow .cashflow-container p{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif !important;
+    line-height: 1;
+    margin-bottom: 30px;
+  }
+  .cash-flow .cashflow-container .payment-option{
+    border-top: 1px solid #cacaca;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cash-flow .cashflow-container .payment-option li{
+    padding: 30px 15px;
+    border-bottom: 1px solid #cacaca;
+  }
+.cash-flow .cashflow-container .payment-option li a{
+  font-size: 20px;
+  font-weight: 500;
+  color: #456BD9;
+  text-decoration: none;
+}
+/* pay-via-cash */
+
+.pay-via-cash{
+  border: 0;
+  border-radius: 20px;
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 750px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 120px;
+}
+.pay-via-cash .modal-header{
+  padding: 0 15px 0 0;
+  border: 0;
+  display: block;
+  text-align: left;
+  position: relative;
+}
+.pay-via-cash .modal-header h2 {
+  font-size: 34px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif !important;
+}
+.pay-via-cash .modal-header .btn-close {
+    background-image: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 23px;
+    height: 23px;
+    opacity: 1;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.pay-via-cash .modal-header .btn-close:focus{
+  box-shadow: none;
+}
+.pay-via-cash .modal-header .btn-close:after, .pay-via-cash .modal-header .btn-close:before {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 2px;
+  background: #7d7d7d;
+  top: 10px;
+  left: 0;
+}
+.pay-via-cash .modal-header .btn-close:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.pay-via-cash .modal-header .btn-close:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.pay-via-cash .modal-body {
+  padding: 10px 0 0;
+}
+.pay-via-cash{
+  padding: 50px;
+}
+.pay-via-cash .totalpay-amount{
+  font-size: 100px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+.pay-via-cash label.title{
+  color: #5C5C5C;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif !important;
+}
+.pay-via-cash .store-btn-lg{
+  margin-top: 45px;
+  border: 0;
+  width: 100%;
+  font-family: 'Poppins', sans-serif !important;
+}
+/* Payment Done */
+.payment-done{
+  max-width: 475px;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 150px;
+}
+.payment-done .top-box{
+  border: 1px solid #CACACA;
+  border-radius: 20px;
+  padding: 40px 20px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.payment-done .decoration{
+  margin: 0 auto 30px;
+  max-width: 250px;
+  position: relative;
+}
+.payment-done .decoration .icon{
+  width: 225px;
+  height: 137px;
+  position: relative;
+  z-index: 1;
+}
+.payment-done .decoration .success-check{
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  background: #63AF81;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment-done .decoration .success-check .icon{
+  width: 30px;
+  height: 16px;
+}
+.payment-done .totalpay-amount{
+  font-size: 100px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+.payment-done .top-box p{
+  font-weight: 500;
+  margin-bottom: 25px;
+  font-family: 'Poppins', sans-serif !important;
+}
+.payment-done .change-money{
+  font-weight: 600;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif !important;
+}
+.payment-done .store-btn-lg{
+  width: 100%;
+  border: 0;
+}
+.payment-done .button-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payment-done .button-wrapper .btn-border{
+  margin-top: 10px;
+  margin-right: 9px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+.payment-done .button-wrapper .btn-border:last-child{
+  margin-right: 0;
 }

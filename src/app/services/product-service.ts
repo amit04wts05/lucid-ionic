@@ -19,7 +19,7 @@ export class ProductService {
           type: type,
           search: search,
           offset: offset,
-          limit: limit,
+          perPage: limit,
         },
       }
     );

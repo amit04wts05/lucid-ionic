@@ -15,7 +15,7 @@ export class TokenInterceptorService implements HttpInterceptor {
       };
 
       if(localStorage.getItem("token")){
-        headers["Authorization"]= `"Bearer" ${localStorage.getItem("token")}`;
+        headers["Authorization"]= `Bearer ${localStorage.getItem("token")}`;
       }
             return next.handle(httpRequest.clone({ setHeaders: headers }));
       }

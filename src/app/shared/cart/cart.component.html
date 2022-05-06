@@ -18,7 +18,8 @@
         Look up customer</a>
         <a href="javascript:void(0)" class="store-btn btn-border">Create New</a>
 </div>
-    <ul class="cart-product-list" *ngIf="cartData.items">
+<div *ngIf="cartData.items.length>0">
+    <ul class="cart-product-list" >
         <li class="d-flex align-items-center" *ngFor="let cart of cartData.items">
             <a href="javascript:void(0)" class="remove-btn"></a>
             <div class="product-info d-flex">
@@ -47,8 +48,9 @@
             <div class="sub-amount">${{cartData.total}}</div>
         </div>
     </div>
-    <button class="store-btn-lg btn-blue">Pay ${{cartData.total}}</button>
-     <div class="empty-bag">
+    <button class="store-btn-lg btn-blue" (click)="payNow()">Pay ${{cartData.total}}</button>
+</div>
+     <div class="empty-bag" *ngIf="cartData.items.length==0">
         <svg class="icon">
             <use xlink:href="./assets/images/svg-sprite.svg#icon-bear"></use>
         </svg>
