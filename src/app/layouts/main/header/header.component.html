@@ -13,8 +13,8 @@
   </div>
   <div class="profile-action ms-auto">
       <a href="javascript:void(0)" class="user-profile">
-          <img src="./assets/images/profile-img.png" alt=""/>
-          <span *ngIf="empname">{{empname}}</span>
+          <img src="{{user?.image}}" alt=""/>
+          <span>{{user?.name}}</span>
       </a>
       <a href="javascript:void(0)"(click)="logout()" class="store-btn btn-border">Log out</a>
   </div>

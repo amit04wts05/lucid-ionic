@@ -14,4 +14,12 @@ export class AuthService {
       studioId,
     });
   }
+
+  getUser() {
+    let user = localStorage.getItem('_user');
+    if(user) {
+      user = JSON.parse(user);
+    }
+    return user;
+  }
 }

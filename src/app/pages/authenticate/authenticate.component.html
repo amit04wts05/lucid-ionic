@@ -7,10 +7,10 @@
                     <div class="user-box d-flex flex-column align-items-center">
                         <a routerLink="/pos" class="block-link"></a>
                         <div class="user-img">
-                            <img src="./assets/images/user-img-1.png" alt="" />
+                            <img src="{{user?.image}}" alt="" />
                         </div>
                         <div class="content">
-                            <h3>{{loginData.data.firstName+' '+loginData.data.lastName}}</h3>
+                            <h3>{{user?.firstName}} {{user?.lastName}}</h3>
                         </div>
                     </div>
                 </div>

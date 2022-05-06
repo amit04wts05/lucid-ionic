@@ -5,13 +5,13 @@
     <!--<a href="javascript:void(0)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>-->
   </div>
   <div class="modal-body">
-      <div class="totalpay-amount">$86.60</div>
+      <div class="totalpay-amount">${{cartData?.total}}</div>
       <div class="form-row">
           <label class="title">Enter cash amount</label>
-          <input type="text" class="form-control" placeholder="Enter cash amount">
+          <input type="text" class="form-control" [(ngModel)]="amount" placeholder="Enter cash amount">
       </div>
       <div class="form-row">
-          <button class="store-btn-lg btn-blue" onclick="window.location.href='payment-done.html'">Tender</button>
+          <button class="store-btn-lg btn-blue" (click)="placeOrder(cartData)">Tender</button>
       </div>
   </div>
 </div> 

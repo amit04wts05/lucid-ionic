@@ -1,14 +1,13 @@
-
 <div class="order-summary-head d-flex justify-content-between align-items-center">
     <h3>Order Summary</h3>
     <div class="order-action d-flex align-items-center">
-    <a href="javascript:void(0)"><svg class="icon">
-        <use xlink:href="./assets/images/svg-sprite.svg#icon-tag"></use>
-    </svg></a>
-    <a href="javascript:void(0)" (click)="clearCart()"><svg class="icon">
-        <use xlink:href="./assets/images/svg-sprite.svg#icon-bin"></use>
-    </svg></a>
-</div>
+        <a href="javascript:void(0)"><svg class="icon">
+                <use xlink:href="./assets/images/svg-sprite.svg#icon-tag"></use>
+            </svg></a>
+        <a href="javascript:void(0)" (click)="clearCart()"><svg class="icon">
+                <use xlink:href="./assets/images/svg-sprite.svg#icon-bin"></use>
+            </svg></a>
+    </div>
 </div>
 <div class="add-customer-box">
     <a href="javascript:void(0)" class="add-customer">
@@ -16,22 +15,21 @@
             <use xlink:href="./assets/images/svg-sprite.svg#icon-customer"></use>
         </svg>
         Look up customer</a>
-        <a href="javascript:void(0)" class="store-btn btn-border">Create New</a>
+    <a href="javascript:void(0)" class="store-btn btn-border">Create New</a>
 </div>
-<ng-container *ngIf="cartData">
-<div *ngIf="cartData.items.length>0">
-    <ul class="cart-product-list" >
-        <li class="d-flex align-items-center" *ngFor="let cart of cartData.items">
+<ng-container *ngIf="cartData?.items">
+    <ul class="cart-product-list">
+        <li class="d-flex align-items-center" *ngFor="let item of cartData.items">
             <a href="javascript:void(0)" class="remove-btn"></a>
             <div class="product-info d-flex">
                 <div class="image">
-                    <img src="./assets/images/cart-product-thumb.png" alt=""/>
+                    <img src="{{item.image}}" alt="" class="item-image" />
                 </div>
                 <div class="product-content">
-                    <h4>{{cart.name}}</h4>
-                    <div class="quantity">Quantity <span>{{cart.qty}}</span></div>
+                    <h4>{{item.name}}</h4>
+                    <div class="quantity">Quantity <span>{{item.qty}}</span></div>
                 </div>
-                <div class="price">${{cart.price}}</div>
+                <div class="price">${{item.price}}</div>
             </div>
         </li>
     </ul>
@@ -42,19 +40,18 @@
         </div>
         <div class="tax-amount d-flex justify-content-between align-items-center">
             <div class="tax">Sales Tax </div>
-            <div class="sub-amount">${{cartData.tax}}</div>
+            <div class="sub-amount">${{cartData?.tax}}</div>
         </div>
         <div class="pay-amount d-flex justify-content-between align-items-center">
             <div class="tax">You will Pay</div>
-            <div class="sub-amount">${{cartData.total}}</div>
+            <div class="sub-amount">${{cartData?.total}}</div>
         </div>
     </div>
-    <button class="store-btn-lg btn-blue" (click)="payNow()">Pay ${{cartData.total}}</button>
+    <button class="store-btn-lg btn-blue" (click)="payNow()">Pay ${{cartData?.total}}</button>
+</ng-container>
+<div class="empty-bag" *ngIf="!cartData?.items">
+    <svg class="icon">
+        <use xlink:href="./assets/images/svg-sprite.svg#icon-bear"></use>
+    </svg>
+    <p>Your bag is empty.</p>
 </div>
-     <div class="empty-bag" *ngIf="cartData.items.length == 0">
-        <svg class="icon">
-            <use xlink:href="./assets/images/svg-sprite.svg#icon-bear"></use>
-        </svg>
-         <p>Your bag is empty.</p>
-     </div>
-    </ng-container>

@@ -7,11 +7,10 @@ import { EmployeeResponse } from '../model/employee';
 export class EmployeeService {
   resources = { emp: '/employees' };
   constructor(private http: HttpClient) {}
-
+  
   getEmployee(){
-    console.log("api call");
    return  this.http.get<EmployeeResponse>(environment.url+this.resources.emp,{params:{studioId:'62663262406ac89fb01cdc64'}});
-
+   
   }
-
+ 
 }

@@ -26,6 +26,13 @@ export class LoaderService {
         response.present();
       });
   }
+
+  remove() {
+    setTimeout(() => {
+      this.dismissLoader()
+    }, 200)
+  }
+
   // Dismiss loader
   dismissLoader() {
     this.loadingController

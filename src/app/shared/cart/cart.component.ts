@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart-service';
@@ -8,51 +8,43 @@ import { CartService } from 'src/app/services/cart-service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit,OnDestroy {
+export class CartComponent implements OnInit {
   cartRefreshService: Subscription;
-  cartData: any = null;
+  cartData: any;
   constructor(private cartService: CartService,private _router: Router) {
     this.subscribeRefreshCart();
   }
+  ngOnInit() {}
+
   subscribeRefreshCart() {
-
     this.cartRefreshService = this.cartService.refreshCart.subscribe((data) => {
-      console.log(data);
-      console.log("refresh cart service");
-     this.refreshCart();
-
-  })
-}
-  refreshCart(){
-    this.cartService.showcart().subscribe(
-      (data) => {
-        console.log("refresh cart service");
-        console.log(data);
-        this.cartData = data;
-      },
-      (err) => {
-        this.cartData =null
-        console.log(err);
-      }
-    );
-
+      this.cartService.showcart().subscribe(
+        (data) => {
+          this.cartData = data;
+        },
+        (err) => {
+          console.log(err);
+          this.cartData = null;
+        }
+      );
+    });
+    this.refresh();
   }
-  clearCart() {
-    let empData = JSON.parse(localStorage.getItem('empData'));
-    if (empData.token) {
-      this.cartService
-        .clearCart(empData.employeeId)
-        .subscribe((data) => {
-          this.cartService.refreshCart.next('');
-        });
-    }
+
+  refresh() {
+    this.cartService.refreshCart.next('');
   }
   payNow(){
     this._router.navigate(['payment']);
 
   }
-  ngOnInit() {}
-  ngOnDestroy(): void {
-    this.cartRefreshService.unsubscribe();
+
+  clearCart() {
+    this.cartService.clearCart(localStorage.getItem("employeeId")).subscribe(
+      (data) => {
+        console.log(`Cart cleared!`);
+        this.refresh();
+      }
+    )
   }
 }

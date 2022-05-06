@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
@@ -30,7 +29,7 @@ export class PosComponent implements OnInit, OnDestroy {
   searchkey = '';
   offset = 0;
   limit = 20;
-  qty = 1;
+
   constructor(
     private router: Router,
     private product: ProductService,
@@ -59,9 +58,11 @@ export class PosComponent implements OnInit, OnDestroy {
     this.selectedCategory = id || '';
     this.getProduct();
   }
+
   addBookmark(id: any) {
     this.selectbookmark = id;
   }
+
   getProduct() {
     if (this.productResponse) {
       this.productResponse.unsubscribe();
@@ -76,50 +77,55 @@ export class PosComponent implements OnInit, OnDestroy {
       )
       ?.subscribe((data) => {
         this.productData = data;
-        this.loader.dismissLoader();
+        this.loader.remove();
       });
   }
+
   async productDetail(productDetail: any) {
     console.log(productDetail);
-    if (productDetail.hasOptions) {
-      const modal = await this.modalController.create({
-        component: ProductModalComponent,
-        componentProps: {
-          data: productDetail,
-        },
-        cssClass: 'product-popup',
-      });
+    if (!productDetail.hasOptions) {
+      console.log(productDetail._id);
 
-      modal.onDidDismiss().then((dataReturned) => {
-        if (dataReturned !== null) {
-          this.dataReturned = dataReturned.data;
-          //alert('Modal Sent Data :'+ dataReturned);
-        }
-      });
-
-      return await modal.present();
-    } else {
-      this.cartService
-        .addCart(productDetail._id, this.qty, '')
-        .subscribe((data) => {
-          console.log("refresh cart");
-          this.cartService.refreshCart.next("");
-
-
-        }),
-        (err) => {
-          console.log(err);
-        };
+      this.addCart(productDetail._id);
+      return false;
     }
+    const modal = await this.modalController.create({
+      component: ProductModalComponent,
+      componentProps: {
+        data: productDetail,
+      },
+      cssClass: 'product-popup',
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+
+    return await modal.present();
   }
+
   closeModal() {
     this.modalController.dismiss({
       dismissed: true,
     });
   }
+
   getProductList(type: any) {
     this.type = type;
     this.getProduct();
+  }
+
+  addCart(productId) {
+    this.cartService.addCart(productId, 1).subscribe((data) => {
+      console.log(data);
+      this.cartService.refreshCart.next('');
+    }),
+      (err) => {
+        console.log(err);
+      };
   }
 
   ngOnDestroy(): void {

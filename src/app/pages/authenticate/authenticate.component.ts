@@ -9,6 +9,7 @@ import { LoaderService } from 'src/app/services/loader-service';
 })
 export class AuthenticateComponent implements OnInit, OnDestroy {
   id: any;
+  user: any;
   loginData: any;
   loginResponse: any;
   constructor(
@@ -23,20 +24,18 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
+
   login() {
     this.loginResponse = this.auth.login(this.id).subscribe(
       (data) => {
         this.loginData = data;
+        this.user = data['data'];
         if (data['data'].token) {
-          let empDtata = {
-            token: data['data'].token,
-            employeeId: data['data'].id,
-            name: `${data['data'].firstName}  ${data['data'].lastName}`,
-          };
-          localStorage.setItem('empData', JSON.stringify(empDtata));
+          localStorage.setItem('_user', JSON.stringify(this.user))
         }
       },
       (err) => {
@@ -44,6 +43,7 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
       }
     );
   }
+  
   ngOnDestroy(): void {
     this.loginResponse.unsubscribe();
   }

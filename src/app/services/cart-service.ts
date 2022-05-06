@@ -16,7 +16,7 @@ export class CartService {
     this.refreshCart = new BehaviorSubject('');
   }
 
-  addCart(productId, qty, variantId, studioId = '62663262406ac89fb01cdc64') {
+  addCart(productId, qty, variantId?, studioId = '62663262406ac89fb01cdc64') {
     return this.http.post(environment.url + this.resources.cart, {
       studioId,
       productId,

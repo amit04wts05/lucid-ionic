@@ -6,8 +6,8 @@ import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 })
 export class ProductTileComponent implements OnInit {
 
-  @Input() productData:any;
-  @Output() productPage:EventEmitter<string>= new EventEmitter();
+  @Input() productData:any; 
+  @Output() productPage:EventEmitter<string>= new EventEmitter();  
   constructor() { }
 
   ngOnInit(): void {
@@ -15,7 +15,6 @@ export class ProductTileComponent implements OnInit {
 
   productDetail(event){
   this.productPage.emit(event);
-
   }
 
 }
