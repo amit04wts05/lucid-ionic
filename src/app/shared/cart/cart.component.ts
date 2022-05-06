@@ -29,9 +29,10 @@ export class CartComponent implements OnInit {
     this.cartService.refreshCart.next('');
   }
   clearCart() {
-    if (localStorage.getItem('employeeId')) {
+    let empData = JSON.parse(localStorage.getItem('empData'));
+    if (empData.token) {
       this.cartService
-        .clearCart(localStorage.getItem('employeeId'))
+        .clearCart(empData.employeeId)
         .subscribe((data) => {});
     }
   }

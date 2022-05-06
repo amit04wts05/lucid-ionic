@@ -31,12 +31,12 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
       (data) => {
         this.loginData = data;
         if (data['data'].token) {
-          localStorage.setItem('token', data['data'].token);
-          localStorage.setItem('employeeId', data['data'].id);
-          localStorage.setItem(
-            'name',
-            `${data['data'].firstName}  ${data['data'].lastName}`
-          );
+          let empDtata = {
+            token: data['data'].token,
+            employeeId: data['data'].id,
+            name: `${data['data'].firstName}  ${data['data'].lastName}`,
+          };
+          localStorage.setItem('empData', JSON.stringify(empDtata));
         }
       },
       (err) => {
