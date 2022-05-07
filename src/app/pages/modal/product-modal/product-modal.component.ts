@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IonSlides, ModalController, NavParams } from '@ionic/angular';
 import { CartService } from 'src/app/services/cart-service';
+import { LoaderService } from 'src/app/services/loader-service';
 
 @Component({
   selector: 'app-product-modal',
@@ -26,11 +27,12 @@ export class ProductModalComponent implements OnInit {
   constructor(
     public cartService: CartService,
     private modalController: ModalController,
+    private loader: LoaderService,
     private navParams: NavParams,
     private http: CartService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   toChange(i) {
     this.viewer.nativeElement?.slideTo(i + 1, 500);
@@ -53,13 +55,17 @@ export class ProductModalComponent implements OnInit {
   }
 
   addCart(productId) {
-    this.http.addCart(productId._id, this.qty, this.size).subscribe((data) => {
+    this.loader.simpleLoader();
+    this.http.addCart(productId._id, this.qty, this.size).subscribe(async (data) => {
       console.log(data);
+
+      await this.loader.dismissLoader();
       this.cartService.refreshCart.next('');
       this.closeModal();
-    }),
-      (err) => {
-        console.log(err);
-      };
+    }, err => {
+      this.loader.dismissLoader();
+      console.log(err);
+    })
+
   }
 }

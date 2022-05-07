@@ -26,10 +26,11 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   login() {
+    this.loader.simpleLoader();
     this.loginResponse = this.auth.login(this.id).subscribe(
       (data) => {
         this.loginData = data;
@@ -37,13 +38,15 @@ export class AuthenticateComponent implements OnInit, OnDestroy {
         if (data['data'].token) {
           localStorage.setItem('_user', JSON.stringify(this.user))
         }
+        this.loader.dismissLoader();
       },
       (err) => {
         console.log(err);
+        this.loader.dismissLoader();
       }
     );
   }
-  
+
   ngOnDestroy(): void {
     this.loginResponse.unsubscribe();
   }

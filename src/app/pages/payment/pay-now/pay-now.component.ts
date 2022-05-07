@@ -23,15 +23,21 @@ export class PayNowComponent implements OnInit ,OnDestroy {
   ) {}
 
   ngOnInit() {
-    //this.loader.startLoading();
+    this.loader.simpleLoader();
     this.cartReponse = this.cart.showcart().subscribe((data) => {
       this.cartData = data;
-      //this.loader.dismissLoader();
+      this.loader.dismissLoader();
+    },err=>{
+      this.loader.dismissLoader();
     });
   }
   placeOrder(cart) {
+    this.loader.simpleLoader();
     this.order.placeOrder(cart._id, this.amount, 'cash').subscribe((data) => {
+      this.loader.dismissLoader();
      // this.ordrId = data['data'].orderNumber;
+    },err=>{
+      this.loader.dismissLoader();
     });
     this._router.navigate(['payment/paymentdone']);;
   }

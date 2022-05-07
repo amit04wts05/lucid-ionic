@@ -22,7 +22,9 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     this.empResponse = this.emp.getEmployee().subscribe((data) => {
       console.log(data)
       this.employeeData = data;
-      this.loader.remove();
+      this.loader.dismissLoader();
+    },err=>{
+      this.loader.dismissLoader();
     });
   }
   authenticationPage(id){

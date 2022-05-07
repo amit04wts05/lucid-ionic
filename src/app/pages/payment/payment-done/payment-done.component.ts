@@ -19,11 +19,13 @@ export class PaymentDoneComponent implements OnInit,OnDestroy {
     private order: PlaceOrderService
   ) {}
 
-  ngOnInit() {
-   // this.loader.startLoading();
+  async ngOnInit() {
+   await this.loader.simpleLoader();
     this.cartReponse = this.cart.showcart().subscribe((data) => {
       this.cartData = data;
-     // this.loader.dismissLoader();
+     this.loader.dismissLoader();
+    },err=>{
+      this.loader.dismissLoader();
     });
   }
   ngOnDestroy(): void {

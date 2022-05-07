@@ -40,33 +40,46 @@ export class PosComponent implements OnInit, OnDestroy {
     private cartService: CartService
   ) {
     this.searchService.searchSubject.subscribe((data) => {
-      this.searchkey = data || '';
-      this.loadProduct();
+
+   if(data){
+    this.searchkey = data || '';
+    this.loadProduct();
+   }
+
     });
   }
 
   ngOnInit(): void {
-    this.loader.startLoading();
+    this.loader.simpleLoader();
+    console.log("getCategory");
     this.catResponse = this.cat.getCategory().subscribe((data) => {
+      this.loader.dismissLoader();
       this.categoryData = data;
       this.getProduct();
+    },err=>{
+      this.loader.dismissLoader();
     });
   }
 
   loadProduct(id?: any) {
     this.loader.simpleLoader();
     this.selectedCategory = id || '';
-    this.getProduct();
+    this.getProduct(false);
   }
 
   addBookmark(id: any) {
     this.selectbookmark = id;
   }
 
-  getProduct() {
+  getProduct(loader = true) {
+    if(loader){
+      this.loader.simpleLoader();
+    }
+
     if (this.productResponse) {
       this.productResponse.unsubscribe();
     }
+    console.log("product");
     this.productResponse = this.product
       ?.getProduct(
         this.selectedCategory,
@@ -75,9 +88,13 @@ export class PosComponent implements OnInit, OnDestroy {
         this.offset,
         this.limit
       )
-      ?.subscribe((data) => {
+      .subscribe((data) => {
+        this.loader.dismissLoader();
         this.productData = data;
-        this.loader.remove();
+
+        // this.loader.remove();
+      },err=>{
+        this.loader.dismissLoader();
       });
   }
 
@@ -119,13 +136,15 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   addCart(productId) {
+    this.loader.simpleLoader();
     this.cartService.addCart(productId, 1).subscribe((data) => {
+      this.loader.dismissLoader();
       console.log(data);
       this.cartService.refreshCart.next('');
-    }),
-      (err) => {
-        console.log(err);
-      };
+    },err=>{
+      this.loader.dismissLoader();
+      console.log(err);
+    })
   }
 
   ngOnDestroy(): void {

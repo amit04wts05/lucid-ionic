@@ -18,10 +18,17 @@ export class PaymentComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-   // this.loader.startLoading();
-    this.cartReponse = this.cart.showcart().subscribe((data) => {
+
+ this.fetchData();
+  }
+  async fetchData(){
+    await this.loader.simpleLoader();
+    this.cartReponse =  this.cart.showcart().subscribe((data) => {
+      console.log(data);
       this.cartData = data;
-    //  this.loader.dismissLoader();
+     this.loader.dismissLoader();
+    },err=>{
+      this.loader.dismissLoader();
     });
   }
   payAmount() {
