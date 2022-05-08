@@ -4,7 +4,7 @@ import { LoadingController } from '@ionic/angular';
 
 @Injectable()
 export class LoaderService {
-  constructor(public loadingController: LoadingController) {}
+  constructor(public loadingController: LoadingController) { }
 
   private _loading: boolean = false;
   private _blog: boolean = false;
@@ -14,6 +14,7 @@ export class LoaderService {
   get loading(): boolean {
     return this._loading;
   }
+
 
   // simpleLoader() {
   //   this.loadingController
@@ -48,15 +49,21 @@ export class LoaderService {
     this.loadingStatus.next(value);
   }
 
+
   async simpleLoader() {
-    //  await this.dismissLoader();
-    // console.log("load loader");
+  //  await this.dismissLoader();
+// console.log("load loader");
     this.loaderData = await this.loadingController.create({
+
       // duration: 2000,
+      spinner:'lines-small',
 
       backdropDismiss: true,
+
+
     });
-    await this.loaderData.present();
+  await   this.loaderData.present();
+
   }
   async dismissLoader() {
     // console.log("dismiss loader");
@@ -65,12 +72,19 @@ export class LoaderService {
     //   await this.loadingController.dismiss();
     // }
 
-    try {
-      await this.loaderData.dismiss();
-    } catch (e) {}
+
+
+    try{
+     await  this.loaderData.dismiss();
+
+    }catch(e){
+
+    }
+
   }
 
   startLoading() {
+
     this.loading = true;
   }
 
@@ -78,16 +92,5 @@ export class LoaderService {
     this.loading = false;
   }
 
-  get blog(): boolean {
-    return this._blog;
-  }
 
-  set blog(value) {
-    this._blog = value;
-    this.blogData.next(value);
-  }
-
-  addblog(data) {
-    this.blog = data;
-  }
 }

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
+import { IonInfiniteScroll } from '@ionic/angular';
 import { CategoryResponse } from 'src/app/model/category';
 import { ProductResponse } from 'src/app/model/product';
 import { ProductService } from '../../services/product-service';
@@ -19,7 +20,7 @@ export class PosComponent implements OnInit, OnDestroy {
   catResponse: Subscription;
   categoryData: CategoryResponse;
   productResponse: Subscription;
-  productData: Array<ProductResponse> = [];
+  productData: any=[];
 
   selectedCategory: any = '';
   selectbookmark: any = '';
@@ -27,8 +28,10 @@ export class PosComponent implements OnInit, OnDestroy {
   dataReturned: any;
   type = 'bestSellers';
   searchkey = '';
-  offset = 0;
-  limit = 20;
+  page = 1;
+  perPage = 2;
+  totalData = 0;
+  totalPage = 0;
 
   constructor(
     private router: Router,
@@ -85,12 +88,12 @@ export class PosComponent implements OnInit, OnDestroy {
         this.selectedCategory,
         this.type,
         this.searchkey,
-        this.offset,
-        this.limit
+        this.page,
+        this.perPage 
       )
       .subscribe((data) => {
         this.loader.dismissLoader();
-        this.productData = data;
+        this.productData = data.data;
 
         // this.loader.remove();
       },err=>{
@@ -145,6 +148,35 @@ export class PosComponent implements OnInit, OnDestroy {
       this.loader.dismissLoader();
       console.log(err);
     })
+  }
+  doInfinite(infiniteScroll) {
+    this.page = this.page+1;
+    this.loader.simpleLoader();
+    setTimeout(() => {
+      this.product
+      ?.getProduct(
+        this.selectedCategory,
+        this.type,
+        this.searchkey,
+        this.page,
+        this.perPage 
+      )
+         .subscribe(
+           data => {
+            
+             this.page = data.perPage;
+             this.totalData = data.totalData;
+             this.totalPage = data.totalPage;
+             for(let i=0; i<data.data.length; i++) {
+               this.productData.push(data.data[i]);
+             }
+           },
+           err =>  { this.loader.dismissLoader();
+            console.log(err);});
+  
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 1000);
   }
 
   ngOnDestroy(): void {
