@@ -63,9 +63,16 @@ export class PosComponent implements OnInit, OnDestroy {
       this.loader.dismissLoader();
     });
   }
+  productPagination(e){
+    console.log("productPagination pos")
+    console.log(e);
+    this.getProduct(true,e)
 
+  }
   loadProduct(id?: any) {
     this.loader.simpleLoader();
+    this.productData = [];
+    this.page = 1;
     this.selectedCategory = id || '';
     this.getProduct(false);
   }
@@ -74,7 +81,7 @@ export class PosComponent implements OnInit, OnDestroy {
     this.selectbookmark = id;
   }
 
-  getProduct(loader = true) {
+  getProduct(loader = true,e?) {
     if(loader){
       this.loader.simpleLoader();
     }
@@ -89,15 +96,24 @@ export class PosComponent implements OnInit, OnDestroy {
         this.type,
         this.searchkey,
         this.page,
-        this.perPage 
+        this.perPage
       )
       .subscribe((data) => {
         this.loader.dismissLoader();
-        this.productData = data.data;
+        // this.productData = data.data;
+        if(this.page <=data['totalPage']){
+            this.page +=1;
+            this.productData = this.productData.concat(data.data);
+        }
+  if(e){
+    e.target.complete()
+  }
 
-        // this.loader.remove();
       },err=>{
         this.loader.dismissLoader();
+        if(e){
+          e.target.complete()
+        }
       });
   }
 
@@ -159,11 +175,11 @@ export class PosComponent implements OnInit, OnDestroy {
         this.type,
         this.searchkey,
         this.page,
-        this.perPage 
+        this.perPage
       )
          .subscribe(
            data => {
-            
+
              this.page = data.perPage;
              this.totalData = data.totalData;
              this.totalPage = data.totalPage;
@@ -173,7 +189,7 @@ export class PosComponent implements OnInit, OnDestroy {
            },
            err =>  { this.loader.dismissLoader();
             console.log(err);});
-  
+
       console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 1000);

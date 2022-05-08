@@ -12,7 +12,7 @@ import { PlaceOrderService } from 'src/app/services/place-order-service';
 export class PayNowComponent implements OnInit ,OnDestroy {
   cartReponse: any;
   cartData: any;
-  amount: any;
+  amount: number;
   navCtr: any;
   ordrId: any;
   constructor(
@@ -29,17 +29,22 @@ export class PayNowComponent implements OnInit ,OnDestroy {
       this.loader.dismissLoader();
     },err=>{
       this.loader.dismissLoader();
+    },()=>{
+      this.loader.dismissLoader();
     });
   }
   placeOrder(cart) {
     this.loader.simpleLoader();
     this.order.placeOrder(cart._id, this.amount, 'cash').subscribe((data) => {
       this.loader.dismissLoader();
+      this._router.navigate(['payment/paymentdone']);;
      // this.ordrId = data['data'].orderNumber;
     },err=>{
       this.loader.dismissLoader();
+    },()=>{
+      this.loader.dismissLoader();
     });
-    this._router.navigate(['payment/paymentdone']);;
+
   }
   ngOnDestroy(): void {
     this.cartReponse.unsubscribe();

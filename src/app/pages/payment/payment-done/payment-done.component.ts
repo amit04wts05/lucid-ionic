@@ -26,7 +26,10 @@ export class PaymentDoneComponent implements OnInit,OnDestroy {
      this.loader.dismissLoader();
     },err=>{
       this.loader.dismissLoader();
-    });
+    },()=>{
+      this.loader.dismissLoader();
+      console.log("complete");
+    },);
   }
   ngOnDestroy(): void {
     this.cartReponse.unsubscribe();

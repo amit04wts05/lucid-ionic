@@ -11,8 +11,8 @@
           <input type="text" class="form-control" [(ngModel)]="amount"   placeholder="Enter cash amount">
       </div>
       <div class="form-row">
-          <button class="store-btn-lg btn-blue" [disabled]="amount && cartData?.total>amount" (click)="placeOrder(cartData)">Tender</button>
+          <button class="store-btn-lg btn-blue" [disabled]="cartData?.total>amount" (click)="placeOrder(cartData)">Tender</button>
       </div>
   </div>
-</div> 
+</div>
 </div>
