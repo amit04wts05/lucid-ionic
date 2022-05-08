@@ -1,13 +1,8 @@
 <ion-content class="product-modal-popup">
-  <div class="ion-padding custom-skeleton">
-    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-  </div>
-
     <div class="site-wrapper d-lg-flex flex-md-wrap justify-content-md-between">
         <div class="left-section">
-         <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData" (loadProductEvent)="loadProduct($event)"></category-tile>
+            <category-tile [selectedCategory]="selectedCategory" [categoryData]="categoryData"
+                (loadProductEvent)="loadProduct($event)"></category-tile>
 
 
             <div class="tab_container">
@@ -16,16 +11,21 @@
                         <use xlink:href="./assets/images/svg-sprite.svg#icon-all"></use>
                     </svg> All
                 </h3>
-                <div id="tab1" class="tab_content" >
+                <div id="tab1" class="tab_content">
                     <ul class="store-tabs d-flex justify-content-center" *ngIf="!selectedCategory">
-                        <li class="tab-link" [class.current]="type=='bestSellers'" data-tab="tab-1" (click)="getProductList('bestSellers')">Popular</li>
-                        <li class="tab-link" data-tab="tab-2" [class.current]="type=='recentlySold'" (click)="getProductList('recentlySold')">Recently sold</li>
-                        <li class="tab-link" data-tab="tab-3" [class.current]="type=='newLaunched'" (click)="getProductList('newLaunched')">New Launch</li>
-                        <li class="tab-link" data-tab="tab-4" [class.current]="type=='bookMarked'" (click)="getProductList('bookMarked')">Bookmarks</li>
+                        <li class="tab-link" [class.current]="type=='bestSellers'" data-tab="tab-1"
+                            (click)="getProductList('bestSellers')">Popular</li>
+                        <li class="tab-link" data-tab="tab-2" [class.current]="type=='recentlySold'"
+                            (click)="getProductList('recentlySold')">Recently sold</li>
+                        <li class="tab-link" data-tab="tab-3" [class.current]="type=='newLaunched'"
+                            (click)="getProductList('newLaunched')">New Launch</li>
+                        <li class="tab-link" data-tab="tab-4" [class.current]="type=='bookMarked'"
+                            (click)="getProductList('bookMarked')">Bookmarks</li>
                     </ul>
 
-                   <product-tile *ngIf="productData?.data?.length" [productData]="productData" (productPage)="productDetail($event)"></product-tile>
-                   <div *ngIf="productData?.data?.length==0">NO PRODUCT</div>
+                    <product-tile *ngIf="productData?.data?.length" [productData]="productData"
+                        (productPage)="productDetail($event)"></product-tile>
+                    <div *ngIf="productData?.data?.length==0">NO PRODUCT</div>
                 </div>
             </div>
             <!-- .tab_container -->

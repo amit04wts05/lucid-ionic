@@ -30,9 +30,9 @@ export class ProductModalComponent implements OnInit {
     private loader: LoaderService,
     private navParams: NavParams,
     private http: CartService
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   toChange(i) {
     this.viewer.nativeElement?.slideTo(i + 1, 500);
@@ -56,16 +56,18 @@ export class ProductModalComponent implements OnInit {
 
   addCart(productId) {
     this.loader.simpleLoader();
-    this.http.addCart(productId._id, this.qty, this.size).subscribe(async (data) => {
-      console.log(data);
+    this.http.addCart(productId._id, this.qty, this.size).subscribe(
+      async (data) => {
+        console.log(data);
 
-      await this.loader.dismissLoader();
-      this.cartService.refreshCart.next('');
-      this.closeModal();
-    }, err => {
-      this.loader.dismissLoader();
-      console.log(err);
-    })
-
+        await this.loader.dismissLoader();
+        this.cartService.refreshCart.next('');
+        this.closeModal();
+      },
+      (err) => {
+        this.loader.dismissLoader();
+        console.log(err);
+      }
+    );
   }
 }

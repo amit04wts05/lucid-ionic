@@ -14,13 +14,14 @@ import { AuthService } from './services/auth-service';
 import { CategoryService } from './services/category-service';
 import { PlaceOrderService } from './services/place-order-service';
 import { LoaderService } from './services/loader-service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
   declarations: [AppComponent,LoaderComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
-  providers: [LoaderService,CartService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },EmployeeService,ProductService,AuthService,CategoryService,AuthService,PlaceOrderService],
+  providers: [LoaderService,CartService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },EmployeeService,ProductService,AuthService,CategoryService,AuthService,PlaceOrderService,AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
