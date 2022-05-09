@@ -15,6 +15,7 @@ export class PayNowComponent implements OnInit ,OnDestroy {
   amount: number;
   navCtr: any;
   ordrId: any;
+  errorMessage:boolean;
   constructor(
     private cart: CartService,
     private loader: LoaderService,
@@ -37,10 +38,11 @@ export class PayNowComponent implements OnInit ,OnDestroy {
     this.loader.simpleLoader();
     this.order.placeOrder(cart._id, this.amount, 'cash').subscribe((data) => {
       this.loader.dismissLoader();
-      this._router.navigate(['payment/paymentdone']);;
+      this.navCtr.navigateForward(["/authentication"],{queryParams:{amount:this.amount}});
      // this.ordrId = data['data'].orderNumber;
     },err=>{
       this.loader.dismissLoader();
+      this.errorMessage=true;
     },()=>{
       this.loader.dismissLoader();
     });

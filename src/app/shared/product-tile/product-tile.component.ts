@@ -15,6 +15,7 @@ export class ProductTileComponent implements OnInit {
   @Input() type: any;
   @Input() searchkey: any;
   @Input() page: any;
+  @Input() totalPage: any;
   @Input() perPage: any;
 
   productResponse:Subscription;

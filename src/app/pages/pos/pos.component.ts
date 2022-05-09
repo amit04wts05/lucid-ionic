@@ -20,7 +20,7 @@ export class PosComponent implements OnInit, OnDestroy {
   catResponse: Subscription;
   categoryData: CategoryResponse;
   productResponse: Subscription;
-  productData: any=[];
+  productData: any = [];
 
   selectedCategory: any = '';
   selectbookmark: any = '';
@@ -29,7 +29,7 @@ export class PosComponent implements OnInit, OnDestroy {
   type = 'bestSellers';
   searchkey = '';
   page = 1;
-  perPage = 2;
+  perPage = 20;
   totalData = 0;
   totalPage = 0;
 
@@ -43,31 +43,31 @@ export class PosComponent implements OnInit, OnDestroy {
     private cartService: CartService
   ) {
     this.searchService.searchSubject.subscribe((data) => {
-
-   if(data){
-    this.searchkey = data || '';
-    this.loadProduct();
-   }
-
+      if (data) {
+        this.searchkey = data || '';
+        this.loadProduct();
+      }
     });
   }
 
   ngOnInit(): void {
     this.loader.simpleLoader();
-    console.log("getCategory");
-    this.catResponse = this.cat.getCategory().subscribe((data) => {
-      this.loader.dismissLoader();
-      this.categoryData = data;
-      this.getProduct();
-    },err=>{
-      this.loader.dismissLoader();
-    });
+    console.log('getCategory');
+    this.catResponse = this.cat.getCategory().subscribe(
+      (data) => {
+        this.loader.dismissLoader();
+        this.categoryData = data;
+        this.getProduct();
+      },
+      (err) => {
+        this.loader.dismissLoader();
+      }
+    );
   }
-  productPagination(e){
-    console.log("productPagination pos")
+  productPagination(e) {
+    console.log('productPagination pos');
     console.log(e);
-    this.getProduct(true,e)
-
+    this.getProduct(true, e);
   }
   loadProduct(id?: any) {
     this.loader.simpleLoader();
@@ -81,15 +81,15 @@ export class PosComponent implements OnInit, OnDestroy {
     this.selectbookmark = id;
   }
 
-  getProduct(loader = true,e?) {
-    if(loader){
+  getProduct(loader = true, e?) {
+    if (loader) {
       this.loader.simpleLoader();
     }
 
     if (this.productResponse) {
       this.productResponse.unsubscribe();
     }
-    console.log("product");
+    console.log('product');
     this.productResponse = this.product
       ?.getProduct(
         this.selectedCategory,
@@ -98,23 +98,26 @@ export class PosComponent implements OnInit, OnDestroy {
         this.page,
         this.perPage
       )
-      .subscribe((data) => {
-        this.loader.dismissLoader();
-        // this.productData = data.data;
-        if(this.page <=data['totalPage']){
-            this.page +=1;
+      .subscribe(
+        (data) => {
+          this.loader.dismissLoader();
+          // this.productData = data.data;
+          this.totalPage = data['totalPage'];
+          if (this.page <= data['totalPage']) {
+            this.page += 1;
             this.productData = this.productData.concat(data.data);
+          }
+          if (e) {
+            e.target.complete();
+          }
+        },
+        (err) => {
+          this.loader.dismissLoader();
+          if (e) {
+            e.target.complete();
+          }
         }
-  if(e){
-    e.target.complete()
-  }
-
-      },err=>{
-        this.loader.dismissLoader();
-        if(e){
-          e.target.complete()
-        }
-      });
+      );
   }
 
   async productDetail(productDetail: any) {
@@ -156,39 +159,44 @@ export class PosComponent implements OnInit, OnDestroy {
 
   addCart(productId) {
     this.loader.simpleLoader();
-    this.cartService.addCart(productId, 1).subscribe((data) => {
-      this.loader.dismissLoader();
-      console.log(data);
-      this.cartService.refreshCart.next('');
-    },err=>{
-      this.loader.dismissLoader();
-      console.log(err);
-    })
+    this.cartService.addCart(productId, 1).subscribe(
+      (data) => {
+        this.loader.dismissLoader();
+        console.log(data);
+        this.cartService.refreshCart.next('');
+      },
+      (err) => {
+        this.loader.dismissLoader();
+        console.log(err);
+      }
+    );
   }
   doInfinite(infiniteScroll) {
-    this.page = this.page+1;
+    this.page = this.page + 1;
     this.loader.simpleLoader();
     setTimeout(() => {
       this.product
-      ?.getProduct(
-        this.selectedCategory,
-        this.type,
-        this.searchkey,
-        this.page,
-        this.perPage
-      )
-         .subscribe(
-           data => {
-
-             this.page = data.perPage;
-             this.totalData = data.totalData;
-             this.totalPage = data.totalPage;
-             for(let i=0; i<data.data.length; i++) {
-               this.productData.push(data.data[i]);
-             }
-           },
-           err =>  { this.loader.dismissLoader();
-            console.log(err);});
+        ?.getProduct(
+          this.selectedCategory,
+          this.type,
+          this.searchkey,
+          this.page,
+          this.perPage
+        )
+        .subscribe(
+          (data) => {
+            this.page = data.perPage;
+            this.totalData = data.totalData;
+            this.totalPage = data.totalPage;
+            for (let i = 0; i < data.data.length; i++) {
+              this.productData.push(data.data[i]);
+            }
+          },
+          (err) => {
+            this.loader.dismissLoader();
+            console.log(err);
+          }
+        );
 
       console.log('Async operation has ended');
       infiniteScroll.complete();

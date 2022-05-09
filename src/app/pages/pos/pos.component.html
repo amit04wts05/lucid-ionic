@@ -18,7 +18,7 @@
                         <li class="tab-link" data-tab="tab-4" [class.current]="type=='bookMarked'" (click)="getProductList('bookMarked')">Bookmarks</li>
                     </ul>
 
-                   <product-tile *ngIf="productData?.length" [productData]="productData" (productPagination)="productPagination($event)" (productPage)="productDetail($event)"></product-tile>
+                   <product-tile *ngIf="productData?.length" [productData]="productData" (productPagination)="productPagination($event)" (productPage)="productDetail($event)" (page)="page" (totalPage)="totalPage"></product-tile>
                    <div *ngIf="productData?.length==0">NO PRODUCT</div>
                 </div>
             </div>

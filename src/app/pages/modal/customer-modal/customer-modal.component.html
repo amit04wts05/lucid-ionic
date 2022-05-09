@@ -1,0 +1,55 @@
+<div id="lucid-cart-modal">
+  <ion-header [translucent]="true" class="lucid-modal-header">
+    <h2 class="modal-title">{{data.name}}</h2>
+    <a (click)="closeModal()" href="javascript:void(0)" class="btn-close" data-bs-dismiss="modal"
+      aria-label="Close"></a>
+  </ion-header>
+
+
+  <div class="modal-body modal-body d-lg-flex justify-content-between">
+
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <p>
+        <label for="firstname">First Name </label>
+        <input type="text" id="firstName" name="firstName" formControlName="firstName">
+      </p>
+      <p>
+        <label for="lastname">Last Name </label>
+        <input type="text" id="lastName" name="lastName" formControlName="lastName">
+      </p>
+      <p>
+        <label for="lastname">email</label>
+        <input type="text" id="email" name="email" formControlName="email">
+      </p>
+      <p>
+        <label for="lastname">Phone Number</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber">
+      </p>
+      <p>
+        <label for="firstname">Address Line1 </label>
+        <input type="text" id="addressLine1" name="addressLine1" formControlName="addressLine1">
+      </p>
+      <p>
+        <label for="lastname">Address Line2</label>
+        <input type="text" id="addressLine2" name="lastName" formControlName="addressLine2">
+      </p>
+      <p>
+        <label for="lastname">City</label>
+        <input type="text" id="city" name="city" formControlName="city">
+      </p>
+      <p>
+        <label for="firstname">State</label>
+        <input type="text" id="state" name="state" formControlName="state">
+      </p>
+      <p>
+        <label for="lastname">ZipCode</label>
+        <input type="text" id="zipcode" name="zipcode" formControlName="zipcode">
+      </p>
+
+      <button type="submit" class="store-btn-lg btn-blue" [disabled]="!customerForm.valid">Submit</button>
+
+</form>
+  </div>
+</div>
+<!-- Modal -->

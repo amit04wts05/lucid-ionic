@@ -6,13 +6,15 @@
   </div>
   <div class="modal-body">
       <div class="totalpay-amount">${{cartData?.total}}</div>
+      <p style="color:red" *ngIf="errorMessage">Something went wrong contact administration</p>
       <div class="form-row">
           <label class="title">Enter cash amount</label>
           <input type="text" class="form-control" [(ngModel)]="amount"   placeholder="Enter cash amount">
       </div>
       <div class="form-row">
-          <button class="store-btn-lg btn-blue" [disabled]="cartData?.total>amount" (click)="placeOrder(cartData)">Tender</button>
-      </div>
+          <button class="store-btn-lg btn-blue"  (click)="placeOrder(cartData)">Tender</button>
+      
+        </div>
   </div>
 </div>
 </div>

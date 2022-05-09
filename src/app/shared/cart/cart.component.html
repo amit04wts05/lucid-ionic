@@ -10,12 +10,12 @@
     </div>
 </div>
 <div class="add-customer-box">
-    <a href="javascript:void(0)" class="add-customer">
+    <a href="javascript:void(0)" (click)="customer()" class="add-customer">
         <svg class="icon">
             <use xlink:href="./assets/images/svg-sprite.svg#icon-customer"></use>
         </svg>
         Look up customer</a>
-    <a href="javascript:void(0)" class="store-btn btn-border">Create New</a>
+    <a href="javascript:void(0)"  (click)="showCustomer()" class="store-btn btn-border">Create New</a>
 </div>
 <ng-container *ngIf="cartData?.items">
     <ul class="cart-product-list">
@@ -23,13 +23,13 @@
             <a href="javascript:void(0)" class="remove-btn"></a>
             <div class="product-info d-flex">
                 <div class="image">
-                    <img src="{{item.image}}" alt="" class="item-image" />
+                    <img src="{{item?.image}}" alt="" class="item-image" />
                 </div>
                 <div class="product-content">
                     <h4>{{item.name}}</h4>
-                    <div class="quantity">Quantity <span>{{item.qty}}</span></div>
+                    <div class="quantity">Quantity <span>{{item?.qty}}</span></div>
                 </div>
-                <div class="price">${{item.price}}</div>
+                <div class="price">${{item?.price}}</div>
             </div>
         </li>
     </ul>

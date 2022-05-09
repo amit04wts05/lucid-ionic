@@ -56,7 +56,7 @@ export class LoaderService {
     this.loaderData = await this.loadingController.create({
 
       // duration: 2000,
-      spinner:'lines-small',
+      //spinner:'lines-small',
 
       backdropDismiss: true,
 
