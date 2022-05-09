@@ -16,12 +16,13 @@ import { PlaceOrderService } from './services/place-order-service';
 import { LoaderService } from './services/loader-service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CustomerService } from './services/customer-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AppComponent,LoaderComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,ReactiveFormsModule,FormsModule],
   providers: [LoaderService,CartService,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },EmployeeService,ProductService,AuthService,CategoryService,AuthService,PlaceOrderService,AuthGuardService,CustomerService],
   bootstrap: [AppComponent],
 })

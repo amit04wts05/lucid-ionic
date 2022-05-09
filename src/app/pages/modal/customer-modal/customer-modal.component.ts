@@ -11,7 +11,7 @@ import { LoaderService } from 'src/app/services/loader-service';
   styleUrls: ['./customer-modal.component.scss'],
 })
 export class CustomerModalComponent implements OnInit {
-  customerForm: any;
+  customerForm: FormGroup;
   constructor(
     private modalController: ModalController,
     private loader: LoaderService,
@@ -31,7 +31,7 @@ export class CustomerModalComponent implements OnInit {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required]],
       addressLine1: ['', [Validators.required]],
       addressLine2: ['', [Validators.required]],
       city: ['', [Validators.required]],

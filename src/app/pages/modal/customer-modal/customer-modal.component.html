@@ -1,6 +1,6 @@
 <div id="lucid-cart-modal">
   <ion-header [translucent]="true" class="lucid-modal-header">
-    <h2 class="modal-title">{{data.name}}</h2>
+    <!-- <h2 class="modal-title">{{data.name}}</h2> -->
     <a (click)="closeModal()" href="javascript:void(0)" class="btn-close" data-bs-dismiss="modal"
       aria-label="Close"></a>
   </ion-header>
@@ -8,7 +8,7 @@
 
   <div class="modal-body modal-body d-lg-flex justify-content-between">
 
-    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" >
 
       <p>
         <label for="firstname">First Name </label>
